@@ -1,5 +1,6 @@
 package com.solvd.atm.atm_menu;
 
+import com.solvd.atm.services.CardService;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.models.Card;
 import com.solvd.atm.utils.threads.AccountThread;
@@ -32,7 +33,7 @@ public class MainMenu {
         AccountThread accountThread = new AccountThread();
         LOGGER.info("Write number of card that you insert");
         String cardNumber = SCANNER.nextLine();
-        //validation
+        CardService.validateCard(Integer.parseInt(cardNumber));
         Card card = new Card();
         accountThread.getAccountByCard(card);
         new AccountThread().start();

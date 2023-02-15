@@ -3,12 +3,12 @@ package com.solvd.atm.models;
 import java.util.Date;
 
 public class Card {
-    private long id;
+    private long idCard;
     private String number;
     private User owner;
     private Account account;
-    private Date validityDate;
-    private String cvv;
+    private String validityDate;
+    private int cvv;
     private int pin;
 
     public String getNumber() {
@@ -35,19 +35,19 @@ public class Card {
         this.account = account;
     }
 
-    public Date getValidityDate() {
+    public String getValidityDate() {
         return validityDate;
     }
 
-    public void setValidityDate(Date validityDate) {
+    public void setValidityDate(String validityDate) {
         this.validityDate = validityDate;
     }
 
-    public String getCvv() {
+    public int getCvv() {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
+    public void setCvv(int cvv) {
         this.cvv = cvv;
     }
 
@@ -60,10 +60,10 @@ public class Card {
     }
 
     public long getId() {
-        return id;
+        return idCard;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.idCard = id;
     }
 }
