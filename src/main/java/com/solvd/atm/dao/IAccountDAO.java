@@ -27,7 +27,19 @@ public interface IAccountDAO extends IBaseDAO<Account> {
     @Delete("DELETE FROM account WHERE id_account = #{id_account}")
     boolean removeEntity(@Param("id_account") long id_account);
 
+    @Select("SELECT id_account, opening_date, amount FROM account")
+    @Results(value = {
+            @Result(property = "idAccount", column = "id_account"),
+            @Result(property = "openingDate", column = "opening_date"),
+            @Result(property = "totalSum", column = "amount")
+    })
     List<Account> getAllAccounts();
 
-    Account getAccountByCardId(long id);
+    @Select("SELECT id_account, opening_date, amount FROM account LEFT JOIN card ON SELECT id_account, opening_date, amount FROM account LEFT JOIN card ON id_account=card.account_id_account WHERE id_card=#{id_card}")
+    @Results(value = {
+            @Result(property = "idAccount", column = "id_account"),
+            @Result(property = "openingDate", column = "opening_date"),
+            @Result(property = "totalSum", column = "amount")
+    })
+    Account getAccountByCardId(@Param("id_card") long id);
 }

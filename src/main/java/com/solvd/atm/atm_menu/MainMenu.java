@@ -2,6 +2,7 @@ package com.solvd.atm.atm_menu;
 
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.models.Card;
+import com.solvd.atm.utils.threads.AccountPool;
 import com.solvd.atm.utils.threads.AccountThread;
 
 import java.util.Scanner;
@@ -11,6 +12,7 @@ public class MainMenu {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static boolean mainMenu(boolean exit) {
+        AccountPool.getAccountPool();
         LOGGER.info("Welcome, choose what you want to do");
         LOGGER.info("1. Add card");
         LOGGER.info("2. Switch ATM");
