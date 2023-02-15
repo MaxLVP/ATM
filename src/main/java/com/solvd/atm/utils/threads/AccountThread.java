@@ -4,12 +4,6 @@ import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Card;
 import com.solvd.atm.services.AccountService;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-
-import static com.solvd.atm.atm_menu.working_with_card.CardMenu.cardMenu;
-import static com.solvd.atm.atm_menu.working_with_card.MainMenu.mainCardMenu;
-
 public class AccountThread extends Thread{
     private Account account;
 
@@ -25,8 +19,6 @@ public class AccountThread extends Thread{
     @Override
     public void run() {
         AccountPool accountPool = new AccountPool();
-        AccountPool.getAccountPool();
-        this.account = accountPool.getAccount(this.account.getIdAccount());
-        AccountPool.getAccountPool();
+        account = accountPool.getAccount(this.account.getIdAccount());
     }
 }

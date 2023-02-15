@@ -17,7 +17,6 @@ public class MainMenu {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static boolean mainMenu(boolean exit) {
-        AccountPool.getAccountPool();
         LOGGER.info("Welcome, choose what you want to do");
         LOGGER.info("1. Add card");
         LOGGER.info("2. Switch ATM");
@@ -45,7 +44,12 @@ public class MainMenu {
             if (card.getPin() == pin) {
                 AccountThread accountThread = new AccountThread(card);
                 accountThread.start();
-                mainCardMenu(accountThread.getAccount());
+                Account account = accountThread.getAccount();
+                if(!accountThread.getState().equals(Thread.State.WAITING)) {
+                    mainCardMenu(account);
+                } else {
+                    LOGGER.info("Firstly get back another card from ATM");
+                }
             } else {
                LOGGER.info("Wrong PIN");
            }
