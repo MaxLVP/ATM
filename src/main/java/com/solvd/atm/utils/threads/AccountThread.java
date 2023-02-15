@@ -15,7 +15,9 @@ public class AccountThread extends Thread{
     @Override
     public void run() {
         AccountPool accountPool = new AccountPool();
+        AccountPool.getAccountPool();
         Account account = accountPool.getAccount(this.account);
+        AccountPool.getAccountPool();
         mainCardMenu(account);
         accountPool.releaseAccount(account);
     }

@@ -47,11 +47,11 @@ public class AccountDAO implements IAccountDAO {
 
     @Override
     public List<Account> getAllAccounts() {
-        return null;
+        return iAccountDAO.getAllAccounts();
     }
 
     @Override
     public Account getAccountByCardId(long id) {
-        return null;
+        return iAccountDAO.getAccountByCardId(id);
     }
 }
