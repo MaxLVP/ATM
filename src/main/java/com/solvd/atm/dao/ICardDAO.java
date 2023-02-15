@@ -1,4 +1,6 @@
 package com.solvd.atm.dao;
 
-public interface ICardDao {
+import com.solvd.atm.models.Card;
+
+public interface ICardDAO extends IBaseDAO<Card> {
 }
