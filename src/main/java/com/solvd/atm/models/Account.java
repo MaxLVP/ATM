@@ -69,4 +69,7 @@ public class Account {
     public Account(Currency currency) {
         this.currency = currency;
     }
+
+    public Account() {
+    }
 }

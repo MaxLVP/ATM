@@ -37,14 +37,15 @@ public class Bill {
         count += delta;
         return count;
     }
-
+    public Currency getCurrency() {
+        return currency;
+    }
     public Bill(int rating, int count, Currency currency) {
         this.rating = rating;
         this.count = count;
         this.currency = currency;
     }
 
-    public Currency getCurrency() {
-        return currency;
+    public Bill() {
     }
 }
