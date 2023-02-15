@@ -6,10 +6,16 @@ import java.util.stream.Stream;
 
 public class ATM {
     //use stream and filter by currencies
+    private long id;
     private HashSet<Bill> bills;
     private ArrayList<Integer> billInstances;
     private ArrayList<Integer> billPartitions;
     private Card card;
+
+    public ATM(long id)
+    {
+        this.id = id;
+    }
 
     public ATM() {
         card = null;
@@ -63,4 +69,19 @@ public class ATM {
 
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
 }
