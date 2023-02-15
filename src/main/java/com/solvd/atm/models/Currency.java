@@ -1,6 +1,7 @@
 package com.solvd.atm.models;
 
 public class Currency {
+    private long idCurrency;
     private String name;
     private double course;
 

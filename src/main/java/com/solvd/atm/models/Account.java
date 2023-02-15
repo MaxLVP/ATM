@@ -3,6 +3,7 @@ package com.solvd.atm.models;
 import java.util.Date;
 
 public class Account {
+    private long idAccount;
     private Date openingDate;
     private double totalSum;
     private Currency currency;

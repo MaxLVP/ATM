@@ -1,6 +1,7 @@
 package com.solvd.atm.models;
 
 public class Bill {
+    private long idBill;
     private int rating;
     private int count;
 

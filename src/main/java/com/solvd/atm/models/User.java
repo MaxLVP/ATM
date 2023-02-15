@@ -1,6 +1,7 @@
 package com.solvd.atm.models;
 
 public class User {
+    private long idUser;
     private String firstName;
     private String lastName;
     private String passportID;
