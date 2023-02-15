@@ -4,6 +4,7 @@ import com.solvd.atm.models.Account;
 import org.apache.ibatis.annotations.*;
 
 import java.util.Date;
+import java.util.List;
 
 public interface IAccountDAO extends IBaseDAO<Account> {
     @Select("SELECT id_account, opening_date, amount FROM account WHERE id_account = #{id_account}")
@@ -25,4 +26,8 @@ public interface IAccountDAO extends IBaseDAO<Account> {
 
     @Delete("DELETE FROM account WHERE id_account = #{id_account}")
     boolean removeEntity(@Param("id_account") long id_account);
+
+    List<Account> getAllAccounts();
+
+    Account getAccountByCardId(long id);
 }
