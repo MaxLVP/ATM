@@ -2,7 +2,7 @@ package com.solvd.atm.models;
 
 public class Currency {
     private String name;
-    private float course;
+    private double course;
 
     public String getName() {
         return name;
@@ -12,32 +12,32 @@ public class Currency {
         this.name = name;
     }
 
-    public float getCourse() {
+    public double getCourse() {
         return course;
     }
 
-    public void setCourse(float course) {
+    public void setCourse(double course) {
         this.course = course;
     }
 
-    public Currency(String name, float course) {
+    public Currency(String name, double course) {
         this.name = name;
         this.course = course;
     }
 
-    public float toUSD(float sum) {
+    public double toUSD(double sum) {
         return sum / course;
     }
 
-    public float fromUSD(float sum) {
+    public double fromUSD(double sum) {
         return sum * course;
     }
 
-    public float toNewCourse(float sum, float newCourse) {
+    public double toNewCourse(double sum, double newCourse) {
         return (sum / course) * newCourse;
     }
 
-    public float fromOldCourse(float sum, float oldCourse) {
+    public double fromOldCourse(double sum, double oldCourse) {
         return (sum / oldCourse) * course;
     }
 }
