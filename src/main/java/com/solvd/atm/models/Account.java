@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Account {
     private Date openingDate;
-    private float totalSum;
+    private double totalSum;
     private Currency currency;
     private User owner;
 
@@ -12,11 +12,11 @@ public class Account {
         return openingDate;
     }
 
-    public float getTotalSum() {
+    public double getTotalSum() {
         return totalSum;
     }
 
-    public void setTotalSum(float totalSum) {
+    public void setTotalSum(double totalSum) {
         this.totalSum = totalSum;
     }
 

@@ -1,8 +1,11 @@
 package com.solvd.atm.atm_menu;
 
-import com.solvd.atm.Utils.MyLogger;
+import com.solvd.atm.utils.MyLogger;
+import com.solvd.atm.models.Card;
 
 import java.util.Scanner;
+
+import static com.solvd.atm.atm_menu.working_with_card.MainMenu.mainCardMenu;
 
 public class MainMenu {
     private static final MyLogger LOGGER = MyLogger.getInstance();
@@ -29,6 +32,9 @@ public class MainMenu {
     public static void addCard() {
         LOGGER.info("Write number of card that you insert");
         String cardNumber = SCANNER.nextLine();
+        //validation
+        Card card = new Card();
+        mainCardMenu(card);
     }
 
     public static void switchATM() {
