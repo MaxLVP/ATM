@@ -2,7 +2,6 @@ package com.solvd.atm.atm_menu.working_with_card;
 
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.models.Account;
-import com.solvd.atm.models.Card;
 
 import java.util.Scanner;
 
@@ -12,8 +11,7 @@ public class CardMenu {
     private static final MyLogger LOGGER = MyLogger.getInstance();
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static boolean cardMenu(boolean exit, Card card) {
-        Account account = card.getAccount();
+    public static boolean cardMenu(boolean exit, Account account) {
         LOGGER.info("Welcome, choose what you want to do");
         LOGGER.info("1. Withdraw money from account");
         LOGGER.info("2. Add money to account");
@@ -33,7 +31,7 @@ public class CardMenu {
             case 7 -> exit = true;
             default -> {
                 LOGGER.info("You choose invalid point, try again :(");
-                cardMenu(exit, card);
+                cardMenu(exit, account);
             }
         }
         return exit;

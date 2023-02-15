@@ -2,10 +2,11 @@ package com.solvd.atm.atm_menu;
 
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.models.Card;
+import com.solvd.atm.utils.threads.AccountThread;
 
 import java.util.Scanner;
 
-import static com.solvd.atm.atm_menu.working_with_card.MainMenu.mainCardMenu;
+import static com.solvd.atm.utils.threads.AccountPool.addAccountToPool;
 
 public class MainMenu {
     private static final MyLogger LOGGER = MyLogger.getInstance();
@@ -34,7 +35,8 @@ public class MainMenu {
         String cardNumber = SCANNER.nextLine();
         //validation
         Card card = new Card();
-        mainCardMenu(card);
+        addAccountToPool(card.getAccount());
+        new AccountThread().start();
     }
 
     public static void switchATM() {
