@@ -10,6 +10,11 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
+    public boolean updateEntity(long id_user, String first_name, String last_name, int passport_ID) {
+        return false;
+    }
+
+    @Override
     public boolean updateEntity(User entity) {
         return false;
     }
