@@ -7,11 +7,14 @@ import java.util.stream.Stream;
 public class ATM {
     //use stream and filter by currencies
     private HashSet<Bill> bills;
+    private ArrayList<Integer> billInstances;
+    private ArrayList<Integer> billPartitions;
     private Card card;
 
     public ATM() {
         card = null;
         bills = new HashSet<>();
+        billInstances = new ArrayList<>();
         //fill ATM with bills
         Currency BYN = new Currency("BYN", 2.56);
         Bill byn5 = new Bill(5, 20, BYN);
@@ -41,11 +44,23 @@ public class ATM {
                 .flatMap(b -> b.toList().stream())
                 .sorted()
                 .toList();
-
+        billInstances = (ArrayList<Integer>) availableBills;
+        billPartitions = new ArrayList<>(billInstances.size());
         //List<Integer> availableBills = bills.stream().flatMap(b -> b.getCurrency())
 
         //  PARTITIONS ALGORITHM
         return true;
+    }
+
+    private void partitions(int pos, int max, int sum) {
+        if (sum == 0) {
+            //add partition
+            return;
+        }
+        for (int i = 1; billInstances.get(i) < max && billInstances.get(i) < sum; i++) {
+            billPartitions.set(i, billInstances.get(i));
+        }
+
     }
 
 }

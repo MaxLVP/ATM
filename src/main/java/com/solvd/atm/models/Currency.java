@@ -26,6 +26,9 @@ public class Currency {
         this.course = course;
     }
 
+    public Currency() {
+    }
+
     public double toUSD(double sum) {
         return sum / course;
     }
