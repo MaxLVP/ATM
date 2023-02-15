@@ -1,5 +1,6 @@
 package com.solvd.atm.atm_menu;
 
+import com.solvd.atm.models.Account;
 import com.solvd.atm.services.CardService;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.models.Card;
@@ -7,6 +8,9 @@ import com.solvd.atm.utils.threads.AccountPool;
 import com.solvd.atm.utils.threads.AccountThread;
 
 import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
+
+import static com.solvd.atm.atm_menu.working_with_card.MainMenu.mainCardMenu;
 
 public class MainMenu {
     private static final MyLogger LOGGER = MyLogger.getInstance();
@@ -32,19 +36,19 @@ public class MainMenu {
     }
 
     public static void addCard() {
-        AccountThread accountThread = new AccountThread();
         LOGGER.info("Write number of card that you insert");
-        int cardNumber = Integer.parseInt(SCANNER.nextLine());
+        int cardNumber = SCANNER.nextInt();
         Card card = CardService.validateCard(cardNumber);
         if (card != null) {
             LOGGER.info("Enter PIN of your card");
-            int pin = Integer.parseInt(SCANNER.nextLine());
+            int pin = SCANNER.nextInt();
             if (card.getPin() == pin) {
-                accountThread.getAccountByCard(card);
-                new AccountThread().start();
+                AccountThread accountThread = new AccountThread(card);
+                accountThread.start();
+                mainCardMenu(accountThread.getAccount());
             } else {
-                LOGGER.info("Wrong PIN");
-            }
+               LOGGER.info("Wrong PIN");
+           }
         } else {
             LOGGER.info("Wrong card number");
         }

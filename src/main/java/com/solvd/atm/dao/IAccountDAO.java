@@ -35,7 +35,7 @@ public interface IAccountDAO extends IBaseDAO<Account> {
     })
     List<Account> getAllAccounts();
 
-    @Select("SELECT id_account, opening_date, amount FROM account LEFT JOIN card ON SELECT id_account, opening_date, amount FROM account LEFT JOIN card ON id_account=card.account_id_account WHERE id_card=#{id_card}")
+    @Select("SELECT id_account, opening_date, amount FROM account LEFT JOIN card ON id_account=card.account_id_account WHERE id_card=#{id_card}")
     @Results(value = {
             @Result(property = "idAccount", column = "id_account"),
             @Result(property = "openingDate", column = "opening_date"),

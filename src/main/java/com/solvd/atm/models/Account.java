@@ -9,6 +9,14 @@ public class Account {
     private Currency currency;
     private User owner;
 
+    public long getIdAccount() {
+        return idAccount;
+    }
+
+    public void setIdAccount(long idAccount) {
+        this.idAccount = idAccount;
+    }
+
     public Date getOpeningDate() {
         return openingDate;
     }

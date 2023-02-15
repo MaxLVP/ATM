@@ -2,6 +2,7 @@ package com.solvd.atm.atm_menu.working_with_card;
 
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.models.Account;
+import com.solvd.atm.utils.threads.AccountPool;
 
 import java.util.Scanner;
 
@@ -28,7 +29,10 @@ public class CardMenu {
             case 4 -> TransferMenu.transferMoneyFromAccount(account);
             case 5 -> BillsMenu.payBills(account);
             case 6 -> mainMenu(false);
-            case 7 -> exit = true;
+            case 7 -> {
+                exit = true;
+                new AccountPool().releaseAccount(account);
+            }
             default -> {
                 LOGGER.info("You choose invalid point, try again :(");
                 cardMenu(exit, account);
