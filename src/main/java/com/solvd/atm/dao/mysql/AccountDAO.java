@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.Date;
-
 import java.util.List;
 
 public class AccountDAO implements IAccountDAO {

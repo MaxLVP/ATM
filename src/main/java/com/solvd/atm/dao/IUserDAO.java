@@ -21,6 +21,7 @@ public interface IUserDAO extends IBaseDAO<User> {
     @Insert("INSERT INTO users (first_name, last_name, passport_ID) VALUES (#{firstName}, #{lastName}, #{passportID})")
     @Options(useGeneratedKeys = true, keyProperty = "id_user")
     User createEntity(User entity);
+
     @Delete("DELETE FROM users WHERE id_user = #{id_user}")
     boolean removeEntity(@Param("id_user") long id);
 }
