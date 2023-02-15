@@ -6,8 +6,6 @@ import com.solvd.atm.utils.threads.AccountThread;
 
 import java.util.Scanner;
 
-import static com.solvd.atm.utils.threads.AccountPool.addAccountToPool;
-
 public class MainMenu {
     private static final MyLogger LOGGER = MyLogger.getInstance();
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -31,11 +29,12 @@ public class MainMenu {
     }
 
     public static void addCard() {
+        AccountThread accountThread = new AccountThread();
         LOGGER.info("Write number of card that you insert");
         String cardNumber = SCANNER.nextLine();
         //validation
         Card card = new Card();
-        addAccountToPool(card.getAccount());
+        accountThread.getAccountByCard(card);
         new AccountThread().start();
     }
 
