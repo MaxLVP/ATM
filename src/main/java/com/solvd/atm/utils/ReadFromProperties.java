@@ -1,4 +1,4 @@
-package com.solvd.atm.Utils;
+package com.solvd.atm.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

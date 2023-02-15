@@ -1,4 +1,4 @@
-package com.solvd.atm.Utils;
+package com.solvd.atm.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

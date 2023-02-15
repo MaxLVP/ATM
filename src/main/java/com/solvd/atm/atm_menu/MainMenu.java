@@ -1,6 +1,6 @@
 package com.solvd.atm.atm_menu;
 
-import com.solvd.atm.Utils.MyLogger;
+import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.models.Card;
 
 import java.util.Scanner;
