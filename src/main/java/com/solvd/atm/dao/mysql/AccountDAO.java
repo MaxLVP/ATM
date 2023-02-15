@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.Date;
 
+import java.util.List;
+
 public class AccountDAO implements IAccountDAO {
     private static final SqlSessionFactory SESSION_FACTORY = MyBatisDAO.getSqlSessionFactory();
     private final SqlSession sqlSession = SESSION_FACTORY.openSession();
@@ -41,5 +43,15 @@ public class AccountDAO implements IAccountDAO {
     @Override
     public boolean removeEntity(long id) {
         return false;
+    }
+
+    @Override
+    public List<Account> getAllAccounts() {
+        return null;
+    }
+
+    @Override
+    public Account getAccountByCardId(long id) {
+        return null;
     }
 }

@@ -3,6 +3,7 @@ package com.solvd.atm.models;
 import java.util.Date;
 
 public class Card {
+    private long id;
     private String number;
     private User owner;
     private Account account;
@@ -56,5 +57,13 @@ public class Card {
 
     public void setPin(int pin) {
         this.pin = pin;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
