@@ -1,13 +1,15 @@
 package com.solvd.atm.models;
 
+import com.solvd.atm.dao.mysql.AccountDAO;
+
 import java.util.Date;
 
 public class Account {
     private long idAccount;
     private Date openingDate;
     private double totalSum;
-    private Currency currency;
-    private User owner;
+    private Currency currency = null;
+    private User owner = null;
 
     public long getIdAccount() {
         return idAccount;
@@ -31,6 +33,10 @@ public class Account {
 
     public Currency getCurrency() {
         return currency;
+    }
+
+    public void setingCurrency(Currency currency) {
+        this.currency = currency;
     }
 
     public void setCurrency(Currency currency) {
@@ -57,6 +63,9 @@ public class Account {
                 '}';
     }
 
+    public Account() {
+
+    }
     public Account(Currency currency) {
         this.currency = currency;
     }
