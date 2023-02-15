@@ -1,6 +1,7 @@
 package com.solvd.atm.models;
 
 import java.util.Date;
+import com.solvd.atm.models.User;
 
 public class Card {
     private long idCard;
@@ -19,12 +20,12 @@ public class Card {
         this.number = number;
     }
 
-    public User owner() {
+    public User getOwner() {
         return owner;
     }
 
-    public void setOwner(User holder) {
-        this.owner = holder;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public Account getAccount() {
@@ -65,5 +66,9 @@ public class Card {
 
     public void setId(long id) {
         this.idCard = id;
+    }
+
+    public Card(Account account) {
+        this.account = account;
     }
 }

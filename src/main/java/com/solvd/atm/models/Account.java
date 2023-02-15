@@ -56,4 +56,8 @@ public class Account {
                 ", owner=" + owner +
                 '}';
     }
+
+    public Account(Currency currency) {
+        this.currency = currency;
+    }
 }

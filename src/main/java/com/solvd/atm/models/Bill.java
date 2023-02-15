@@ -5,6 +5,8 @@ public class Bill {
     private int rating;
     private int count;
 
+    private Currency currency;
+
     public int getRating() {
         return rating;
     }
@@ -34,5 +36,15 @@ public class Bill {
     public int incCount(int delta) {
         count += delta;
         return count;
+    }
+
+    public Bill(int rating, int count, Currency currency) {
+        this.rating = rating;
+        this.count = count;
+        this.currency = currency;
+    }
+
+    public Currency getCurrency() {
+        return currency;
     }
 }

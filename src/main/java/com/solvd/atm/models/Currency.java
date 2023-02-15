@@ -41,4 +41,5 @@ public class Currency {
     public double fromOldCourse(double sum, double oldCourse) {
         return (sum / oldCourse) * course;
     }
+
 }
