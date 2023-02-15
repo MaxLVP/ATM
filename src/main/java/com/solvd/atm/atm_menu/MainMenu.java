@@ -32,11 +32,20 @@ public class MainMenu {
     public static void addCard() {
         AccountThread accountThread = new AccountThread();
         LOGGER.info("Write number of card that you insert");
-        String cardNumber = SCANNER.nextLine();
-        CardService.validateCard(Integer.parseInt(cardNumber));
-        Card card = new Card();
-        accountThread.getAccountByCard(card);
-        new AccountThread().start();
+        int cardNumber = Integer.parseInt(SCANNER.nextLine());
+        Card card = CardService.validateCard(cardNumber);
+        if (card != null) {
+            LOGGER.info("Enter PIN of your card");
+            int pin = Integer.parseInt(SCANNER.nextLine());
+            if (card.getPin() == pin) {
+                accountThread.getAccountByCard(card);
+                new AccountThread().start();
+            } else {
+                LOGGER.info("Wrong PIN");
+            }
+        } else {
+            LOGGER.info("Wrong card number");
+        }
     }
 
     public static void switchATM() {
