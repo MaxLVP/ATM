@@ -56,12 +56,12 @@ public class AccountDAO implements IAccountDAO {
     }
 
     @Override
-    public Account getAccountByCardId(long id) {
-        return iAccountDAO.getAccountByCardId(id);
+    public Account getAccountByCardId(long id_card) {
+        return iAccountDAO.getAccountByCardId(id_card);
     }
 
     @Override
-    public List<Account> getAllAccountsByUserId(long id) {
-        return iAccountDAO.getAllAccountsByUserId(id);
+    public List<Account> getAllAccountsByUserId(long id_user) {
+        return iAccountDAO.getAllAccountsByUserId(id_user);
     }
 }

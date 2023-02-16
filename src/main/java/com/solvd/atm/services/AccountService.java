@@ -23,4 +23,8 @@ public class AccountService {
     public static List<Account> getAllAccountsByUser(User user) {
         return ACCOUNT_DAO.getAllAccountsByUserId(user.getIdUser());
     }
+
+    public static boolean updateAmountOnAccount(Account account) {
+        return ACCOUNT_DAO.updateEntity(account.getTotalSum(), account.getIdAccount());
+    }
 }
