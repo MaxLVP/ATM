@@ -71,6 +71,10 @@ public class TransferMenu {
     public static void transferMoney(Account start, Account end) {
         LOGGER.info("Choose what sum you want to transfer");
         double money = SCANNER.nextInt();
+        if (money > start.getTotalSum()) {
+            LOGGER.info("You don't have enough money to pay, try another sum");
+            transferMoney(start, end);
+        }
         start.setTotalSum(start.getTotalSum() - money);
         boolean start_update = AccountService.updateAmountOnAccount(start);
         double endMoney = Exchange.getExchangeAmount(start.getCurrency(), end.getCurrency(), money);
