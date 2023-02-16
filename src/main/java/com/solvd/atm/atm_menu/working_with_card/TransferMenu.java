@@ -1,10 +1,11 @@
 package com.solvd.atm.atm_menu.working_with_card;
 
 import com.solvd.atm.models.Account;
-import com.solvd.atm.models.User;
+import com.solvd.atm.models.Check;
 import com.solvd.atm.services.AccountService;
-import com.solvd.atm.services.UserService;
 import com.solvd.atm.utils.MyLogger;
+import com.solvd.atm.utils.collections.AllChecksCollection;
+import com.solvd.atm.utils.exchange.Exchange;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 public class TransferMenu {
     private static final MyLogger LOGGER = MyLogger.getInstance();
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static final String OPERATION_NAME = "Transfer money between accounts";
 
     public static void transferMoneyFromAccount(Account account) {
         LOGGER.info("Choose where you want to transfer money");
@@ -68,16 +70,28 @@ public class TransferMenu {
 
     public static void transferMoney(Account start, Account end) {
         LOGGER.info("Choose what sum you want to transfer");
-        int money = SCANNER.nextInt();
+        double money = SCANNER.nextInt();
         start.setTotalSum(start.getTotalSum() - money);
         boolean start_update = AccountService.updateAmountOnAccount(start);
-        end.setTotalSum(end.getTotalSum() + money);
+        double endMoney = Exchange.getExchangeAmount(start.getCurrency(), end.getCurrency(), money);
+        end.setTotalSum(end.getTotalSum() + endMoney);
         boolean end_update = AccountService.updateAmountOnAccount(end);
         if (start_update && end_update) {
             LOGGER.info("Money were successfully transfer");
+            getCheckOfOperation(start, money);
         } else {
             LOGGER.info("Money are not transfer, try again later");
         }
     }
 
+    public static void getCheckOfOperation(Account account, double amount) {
+        LOGGER.info("Do you want to print check");
+        LOGGER.info("1. Yes");
+        LOGGER.info("2. No");
+        int point = SCANNER.nextInt();
+        if (point == 1) {
+            Check check = new Check(account.getOwner(), account, OPERATION_NAME, amount);
+            AllChecksCollection.addToCheckList(check);
+        }
+    }
 }
