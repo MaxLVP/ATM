@@ -13,10 +13,11 @@ public class CurrencyService {
         double convertedBalance = 0;
         Currency currency = CURRENCY_DAO.getEntityByCurrencyName(currencyName);
         String nameCurrencyAccount = account.getCurrency().getName();
+        System.out.println(nameCurrencyAccount);
         if (nameCurrencyAccount.equals(currencyName)) {
             convertedBalance = account.getTotalSum();
         } else if (!nameCurrencyAccount.equals("USD") && !currencyName.equals("USD")){
-            convertedBalance = account.getTotalSum() * 2.7 * currency.getCourse();
+            convertedBalance = (account.getTotalSum() / currency.getCourse()) * currency.getCourse();
         } else {
             convertedBalance = account.getTotalSum() * currency.getCourse();
         }

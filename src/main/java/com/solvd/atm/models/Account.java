@@ -35,12 +35,7 @@ public class Account {
         return currency;
     }
 
-    public void setingCurrency(Currency currency) {
-        this.currency = currency;
-    }
-
     public void setCurrency(Currency currency) {
-        this.totalSum = currency.fromOldCourse(totalSum, this.currency.getCourse());
         this.currency = currency;
     }
 
