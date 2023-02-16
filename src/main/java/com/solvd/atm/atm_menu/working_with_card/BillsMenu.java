@@ -63,9 +63,9 @@ public class BillsMenu {
 
     private static void payForTheInternet(Account account) {
         LOGGER.info("Enter contract number");
-        String contractNumber = SCANNER.nextLine();
+        String contractNumber = SCANNER.next();
         LOGGER.info("Enter amount, that you want to pay");
-        double amount = Double.parseDouble(SCANNER.nextLine());
+        double amount = Double.parseDouble(SCANNER.next());
         LOGGER.info("Please, make sure that everything entered correctly:");
         LOGGER.info("Contract number: " + contractNumber);
         LOGGER.info("Amount: " + amount);
