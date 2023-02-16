@@ -32,7 +32,7 @@ public class ATM {
         bills.add(byn10);
         bills.add(byn50);
         bills.add(usd20);
-        card = new Card(new Account(USD));
+        //card = new Card(new Account(USD));
         //fill ATM with bills
     }
 

@@ -40,4 +40,10 @@ public class AccountService {
     public static boolean updateAmountOnAccount(Account account) {
         return ACCOUNT_DAO.updateEntity(account.getTotalSum(), account.getIdAccount());
     }
+
+    public static Account transferMoney(Account account, double amount) {
+        account.setTotalSum(account.getTotalSum() - amount);
+        ACCOUNT_DAO.updateEntity(account.getTotalSum(), account.getIdAccount());
+        return account;
+    }
 }
