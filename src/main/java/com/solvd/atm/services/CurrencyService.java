@@ -1,9 +1,7 @@
 package com.solvd.atm.services;
 
-import com.solvd.atm.dao.IAccountDAO;
 import com.solvd.atm.dao.ICurrencyDAO;
 import com.solvd.atm.dao.mysql.CurrencyDAO;
-import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Currency;
 
 public class CurrencyService {

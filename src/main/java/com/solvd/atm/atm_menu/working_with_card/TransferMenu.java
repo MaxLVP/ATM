@@ -31,8 +31,7 @@ public class TransferMenu {
 
     public static void transferMoneyBetweenUserAccounts(Account accountFromTransfer) {
         LOGGER.info("Choose id of account, you want to transfer money");
-        User user = UserService.getUserByAccountID(accountFromTransfer);
-        List<Account> userAccountList = AccountService.getAllAccountsByUser(user);
+        List<Account> userAccountList = AccountService.getAllAccountsByUser(accountFromTransfer.getOwner());
         LOGGER.info("You accounts, please choose one");
         for (Account userAccount: userAccountList) {
             LOGGER.info(userAccount);

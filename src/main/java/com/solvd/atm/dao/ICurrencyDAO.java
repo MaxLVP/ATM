@@ -13,4 +13,5 @@ public interface ICurrencyDAO extends IBaseDAO<Currency> {
             @Result(property = "course", column = "course")
     })
     Currency getEntityByCurrencyName(@Param("currency_name") String nameCurrency);
+
 }

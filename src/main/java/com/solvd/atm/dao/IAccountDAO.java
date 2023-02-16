@@ -7,10 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 public interface IAccountDAO extends IBaseDAO<Account> {
-    @Select("SELECT id_account, opening_date, amount FROM account WHERE id_account = #{id_account}")
+    @Select("SELECT id_account, opening_date, amount, name_currency FROM account WHERE id_account = #{id_account}")
     @Results(value = {
             @Result(property = "idAccount", column = "id_account"),
             @Result(property = "openingDate", column = "opening_date"),
+            @Result(property = "currency", column = "amount"),
             @Result(property = "totalSum", column = "amount")
     })
     Account getEntityById(@Param("id_account") long id_account);
@@ -27,24 +28,26 @@ public interface IAccountDAO extends IBaseDAO<Account> {
     @Delete("DELETE FROM account WHERE id_account = #{id_account}")
     boolean removeEntity(@Param("id_account") long id_account);
 
-    @Select("SELECT id_account, opening_date, amount FROM account")
+    @Select("SELECT id_account, opening_date, amount, name_currency FROM account")
     @Results(value = {
             @Result(property = "idAccount", column = "id_account"),
             @Result(property = "openingDate", column = "opening_date"),
+            @Result(property = "currency", column = "amount"),
             @Result(property = "totalSum", column = "amount")
     })
     List<Account> getAllAccounts();
 
-    @Select("SELECT id_account, opening_date, amount FROM account LEFT JOIN card ON id_account=card.account_id_account WHERE id_card=#{id_card}")
+    @Select("SELECT id_account, opening_date, amount, name_currency FROM account LEFT JOIN card ON id_account=card.account_id_account WHERE id_card=#{id_card}")
     @Results(value = {
             @Result(property = "idAccount", column = "id_account"),
             @Result(property = "openingDate", column = "opening_date"),
+            @Result(property = "currency", column = "amount"),
             @Result(property = "totalSum", column = "amount")
     })
     Account getAccountByCardId(@Param("id_card") long id);
 
     @Select("""
-            SELECT id_account, opening_date, amount
+            SELECT id_account, opening_date, amount, name_currency
             FROM account
             LEFT JOIN users
             ON id_user = account.users_id_user
@@ -52,6 +55,7 @@ public interface IAccountDAO extends IBaseDAO<Account> {
     @Results(value = {
             @Result(property = "idAccount", column = "id_account"),
             @Result(property = "openingDate", column = "opening_date"),
+            @Result(property = "currency", column = "amount"),
             @Result(property = "totalSum", column = "amount")
     })
     List<Account> getAllAccountsByUserId(@Param("id_user") long id);
