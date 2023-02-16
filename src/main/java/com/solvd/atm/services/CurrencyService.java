@@ -9,21 +9,6 @@ import com.solvd.atm.models.Currency;
 public class CurrencyService {
     private static final ICurrencyDAO CURRENCY_DAO = new CurrencyDAO();
 
-    public static double calculateBalance(Account account, String currencyName) {
-        double convertedBalance = 0;
-        Currency currency = CURRENCY_DAO.getEntityByCurrencyName(currencyName);
-        String nameCurrencyAccount = account.getCurrency().getName();
-        System.out.println(nameCurrencyAccount);
-        if (nameCurrencyAccount.equals(currencyName)) {
-            convertedBalance = account.getTotalSum();
-        } else if (!nameCurrencyAccount.equals("USD") && !currencyName.equals("USD")){
-            convertedBalance = (account.getTotalSum() / currency.getCourse()) * currency.getCourse();
-        } else {
-            convertedBalance = account.getTotalSum() * currency.getCourse();
-        }
-        return convertedBalance;
-    }
-
     public static double getCourseByCurrency(String currencyName) {
         Currency currency = CURRENCY_DAO.getEntityByCurrencyName(currencyName);
         return currency.getCourse();

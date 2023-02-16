@@ -1,0 +1,22 @@
+package com.solvd.atm.utils.exchange;
+
+import com.solvd.atm.models.Currency;
+import com.solvd.atm.services.CurrencyService;
+
+import java.util.Objects;
+
+
+public class Exchange {
+
+    public static double getExchangeAmount(Currency currencyBefore, Currency currencyAfter, double amount) {
+        if (Objects.equals(currencyBefore.getName(), currencyAfter.getName())) {
+            return amount;
+        } else {
+            double course = CurrencyService.getCourseByCurrency(currencyBefore.getName());
+            double amountToUSD = amount / course;
+            double resultAmount = amountToUSD * CurrencyService.getCourseByCurrency(currencyAfter.getName());
+        }
+        return amount;
+    }
+
+}
