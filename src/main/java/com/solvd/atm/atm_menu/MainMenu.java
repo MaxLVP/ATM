@@ -21,7 +21,7 @@ public class MainMenu {
     private static Integer PIN_COUNTER = 0;
 
     public static boolean mainMenu(boolean exit) {
-        LOGGER.info("Welcome, choose what you want to do");
+        LOGGER.info("Welcome to ATM №" + CURRENT_ATM.getId() + ", choose what you want to do");
         LOGGER.info("1. Add card");
         LOGGER.info("2. Switch ATM");
         LOGGER.info("3. Quit");
@@ -44,6 +44,7 @@ public class MainMenu {
             Account account = WorkingWithPool.getAccountFromPool(card);
             if(account == null) {
                 LOGGER.info("Firstly get back another card from ATM");
+                mainMenu(false);
             } else {
                 CURRENT_ATM.setCard(card);
                 mainCardMenu(card, CURRENT_ATM);
@@ -73,9 +74,11 @@ public class MainMenu {
         if(CURRENT_ATM.getId() == 1) {
             LOGGER.info("Switching to ATM 2");
             CURRENT_ATM = ATM_2;
+            mainMenu(false);
         } else if (CURRENT_ATM.getId() == 2) {
             LOGGER.info("Switching to ATM 1");
             CURRENT_ATM = ATM_1;
+            mainMenu(false);
         }
     }
 
