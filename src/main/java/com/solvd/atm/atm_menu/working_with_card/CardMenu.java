@@ -3,6 +3,7 @@ package com.solvd.atm.atm_menu.working_with_card;
 import com.solvd.atm.models.ATM;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.models.Account;
+import com.solvd.atm.utils.collections.AllChecksCollection;
 import com.solvd.atm.utils.threads.AccountPool;
 
 import java.util.Scanner;
@@ -33,6 +34,7 @@ public class CardMenu {
             case 7 -> {
                 exit = true;
                 new AccountPool().releaseAccount(account);
+                LOGGER.info(AllChecksCollection.getAllChecks());
             }
             default -> {
                 LOGGER.info("You choose invalid point, try again :(");
