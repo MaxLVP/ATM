@@ -14,4 +14,8 @@ public class AllChecksCollection {
     public static void addToCheckList(Check check) {
         CHECK_LIST.add(check);
     }
+
+    public static void indexCheckList() {
+        CHECK_LIST.forEach(a -> a.setIdCheck(CHECK_LIST.indexOf(a) + 1));
+    }
 }
