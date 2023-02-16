@@ -1,8 +1,6 @@
 package com.solvd.atm.atm_menu.working_with_card;
 
 import com.solvd.atm.models.Account;
-import com.solvd.atm.models.Currency;
-import com.solvd.atm.services.CurrencyService;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.utils.exchange.Exchange;
 
