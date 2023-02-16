@@ -4,6 +4,7 @@ import com.solvd.atm.dao.IAccountDAO;
 import com.solvd.atm.dao.mysql.AccountDAO;
 import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Card;
+import com.solvd.atm.models.User;
 
 import java.util.List;
 
@@ -12,12 +13,14 @@ public class AccountService {
 
 
     public static List<Account> getAllAccounts() {
-        List<Account> accountList = ACCOUNT_DAO.getAllAccounts();
-        return accountList;
+        return ACCOUNT_DAO.getAllAccounts();
     }
 
     public static Account getAccountByCard(Card card) {
-        Account account = ACCOUNT_DAO.getAccountByCardId(card.getId());
-        return account;
+        return ACCOUNT_DAO.getAccountByCardId(card.getId());
+    }
+
+    public static List<Account> getAllAccountsByUser(User user) {
+        return ACCOUNT_DAO.getAllAccountsByUserId(user.getIdUser());
     }
 }

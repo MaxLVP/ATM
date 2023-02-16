@@ -24,4 +24,18 @@ public interface IUserDAO extends IBaseDAO<User> {
 
     @Delete("DELETE FROM users WHERE id_user = #{id_user}")
     boolean removeEntity(@Param("id_user") long id);
+
+    @Select("""
+            SELECT id_user, first_name, last_name, passport_ID
+            FROM users
+            LEFT JOIN account
+            ON id_user = account.users_id_user
+            WHERE id_account = #{id_account}""")
+    @Results(value = {
+            @Result(property = "idUser", column = "id_user"),
+            @Result(property = "firstName", column = "first_name"),
+            @Result(property = "lastName", column = "last_name"),
+            @Result(property = "passportID", column = "passport_ID")
+    })
+    User getEntityByAccountId(@Param("id_account") long id);
 }
