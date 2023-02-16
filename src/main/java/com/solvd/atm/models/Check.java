@@ -1,6 +1,7 @@
 package com.solvd.atm.models;
 
 public class Check {
+    private long idCheck;
     private User user;
     private Account account;
     private String operation;
@@ -43,5 +44,24 @@ public class Check {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public long getIdCheck() {
+        return idCheck;
+    }
+
+    public void setIdCheck(long idCheck) {
+        this.idCheck = idCheck;
+    }
+
+    @Override
+    public String toString() {
+        return "Check{" +
+                "idCheck=" + idCheck +
+                ", user=" + user +
+                ", account=" + account +
+                ", operation='" + operation + '\'' +
+                ", amount=" + amount +
+                '}';
     }
 }
