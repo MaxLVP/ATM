@@ -1,8 +1,5 @@
 package com.solvd.atm.models;
 
-import java.util.Date;
-import com.solvd.atm.models.User;
-
 public class Card {
     private long idCard;
     private String number;
@@ -11,6 +8,9 @@ public class Card {
     private String validityDate;
     private int cvv;
     private int pin;
+
+    public Card() {
+    }
 
     public String getNumber() {
         return number;
@@ -72,6 +72,4 @@ public class Card {
         this.account = account;
     }
 
-    public Card() {
-    }
 }

@@ -6,6 +6,18 @@ public class User {
     private String lastName;
     private String passportID;
 
+    public User() {
+
+    }
+
+    public long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -36,14 +48,12 @@ public class User {
         this.passportID = passportID;
     }
 
-    public long getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(long idUser) {
-        this.idUser = idUser;
-    }
-
-    public User() {
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", firstName=" + firstName +
+                ", lastName=" + lastName +
+                ", passportID=" + passportID + '}';
     }
 }
