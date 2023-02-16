@@ -15,45 +15,48 @@ import static com.solvd.atm.atm_menu.working_with_card.MainMenu.mainCardMenu;
 public class MainMenu {
     private static final MyLogger LOGGER = MyLogger.getInstance();
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static final ATM ATM_1 = new ATM(1);
+    private static final ATM ATM_2 = new ATM(2);
+    private static ATM CURRENT_ATM = ATM_1;
     private static Integer PIN_COUNTER = 0;
 
-    public static boolean mainMenu(boolean exit, ATM atm) {
+    public static boolean mainMenu(boolean exit) {
         LOGGER.info("Welcome, choose what you want to do");
         LOGGER.info("1. Add card");
         LOGGER.info("2. Switch ATM");
         LOGGER.info("3. Quit");
         int point = SCANNER.nextInt();
         switch (point) {
-            case 1 -> addCard(atm);
-            case 2 -> atm = switchATM(atm);
+            case 1 -> addCard();
+            case 2 -> switchATM();
             case 3 -> exit = true;
             default -> {
                 LOGGER.info("You choose invalid point, try again :(");
-                mainMenu(exit, atm);
+                mainMenu(exit);
             }
         }
         return exit;
     }
 
-    public static void addCard(ATM atm) {
-        if (atm.getCard() == null) {
-            Card card = validateCard(atm);
+    public static void addCard() {
+        if (CURRENT_ATM.getCard() == null) {
+            Card card = validateCard();
             Account account = WorkingWithPool.getAccountFromPool(card);
             if(account == null) {
                 LOGGER.info("Firstly get back another card from ATM");
             } else {
-                atm.setCard(card);
+                CURRENT_ATM.setCard(card);
                 mainCardMenu(card);
             }
         }
         else {
             LOGGER.info("You already have card in this ATM, going to card menu");
-            mainCardMenu(atm.getCard());
+            mainCardMenu(CURRENT_ATM.getCard());
         }
 
     }
 
-    public static Card validateCard(ATM atm) {
+    public static Card validateCard() {
         LOGGER.info("Write number of card that you insert");
         int cardNumber = SCANNER.nextInt();
         Card card = CardService.validateCard(cardNumber);
@@ -61,21 +64,18 @@ public class MainMenu {
             return validatePin(card);
         } else {
             LOGGER.info("Wrong card number or your card was block");
-            mainMenu(false, atm);
+            mainMenu(false);
             return null;
         }
     }
 
-    public static ATM switchATM(ATM atm) {
-        if(atm.getId() == 1) {
+    public static void switchATM() {
+        if(CURRENT_ATM.getId() == 1) {
             LOGGER.info("Switching to ATM 2");
-            return new ATM(2);
-        } else if (atm.getId() == 2) {
+            CURRENT_ATM = ATM_2;
+        } else if (CURRENT_ATM.getId() == 2) {
             LOGGER.info("Switching to ATM 1");
-            return new ATM(1);
-        }
-        else {
-            return null;
+            CURRENT_ATM = ATM_1;
         }
     }
 
