@@ -23,5 +23,6 @@
         <mapper class="com.solvd.atm.dao.ICardDAO"/>
         <mapper class="com.solvd.atm.dao.ICurrencyDAO"/>
         <mapper class="com.solvd.atm.dao.IUserDAO"/>
+        <mapper class="com.solvd.atm.dao.IFineDAO"/>
     </mappers>
 </configuration>

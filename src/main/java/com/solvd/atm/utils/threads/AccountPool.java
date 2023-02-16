@@ -16,33 +16,19 @@ public class AccountPool {
         accountsPool.addAll(accountList);
     }
 
-    public static void getAccountPool() {
-        LOGGER.info(accountsPool);
-    }
-
     public synchronized Account getAccount(Long id) {
-        int size = accountsPool.size();
         Optional<Account> accountOptional = accountsPool.stream().filter(account1 -> account1.getIdAccount() == id).findFirst();
         if (accountOptional.isPresent()) {
             Account account1 = accountOptional.get();
             accountsPool.remove(account1);
             return account1;
         } else {
-            while (accountsPool.size() != size) {
-                try {
-                    wait();
-                    LOGGER.info("This account is busy now, try again later");
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    System.out.println("Thread Interrupted");
-                }
+            LOGGER.info("This account is busy now, try again later");
             }
-        }
         return null;
     }
 
     public synchronized void releaseAccount(Account account) {
         accountsPool.add(account);
-        notify();
     }
 }

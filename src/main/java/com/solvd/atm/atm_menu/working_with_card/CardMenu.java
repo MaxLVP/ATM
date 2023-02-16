@@ -1,7 +1,9 @@
 package com.solvd.atm.atm_menu.working_with_card;
 
+import com.solvd.atm.models.ATM;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.models.Account;
+import com.solvd.atm.utils.collections.AllChecksCollection;
 import com.solvd.atm.utils.threads.AccountPool;
 
 import java.util.Scanner;
@@ -12,7 +14,7 @@ public class CardMenu {
     private static final MyLogger LOGGER = MyLogger.getInstance();
     private static final Scanner SCANNER = new Scanner(System.in);
 
-    public static boolean cardMenu(boolean exit, Account account) {
+    public static boolean cardMenu(boolean exit, Account account, ATM atm) {
         LOGGER.info("Welcome, choose what you want to do");
         LOGGER.info("1. Withdraw money from account");
         LOGGER.info("2. Add money to account");
@@ -23,8 +25,8 @@ public class CardMenu {
         LOGGER.info("7. Take off card");
         int point = SCANNER.nextInt();
         switch (point) {
-            case 1 -> WithdrawMenu.withdrawMoneyFromAccount(account);
-            case 2 -> AddingMoneyMenu.addMoneyToAccount(account);
+            case 1 -> WithdrawMenu.withdrawMoneyFromAccount(account, atm);
+            case 2 -> AddingMoneyMenu.addMoneyToAccount(account, atm);
             case 3 -> AccountInfoMenu.getMoneyInfo(account);
             case 4 -> TransferMenu.transferMoneyFromAccount(account);
             case 5 -> BillsMenu.payBills(account);
@@ -32,10 +34,11 @@ public class CardMenu {
             case 7 -> {
                 exit = true;
                 new AccountPool().releaseAccount(account);
+                LOGGER.info(AllChecksCollection.getAllChecks());
             }
             default -> {
                 LOGGER.info("You choose invalid point, try again :(");
-                cardMenu(exit, account);
+                cardMenu(exit, account, atm);
             }
         }
         return exit;
