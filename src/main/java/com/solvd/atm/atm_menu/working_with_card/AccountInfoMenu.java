@@ -4,6 +4,7 @@ import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Currency;
 import com.solvd.atm.services.CurrencyService;
 import com.solvd.atm.utils.MyLogger;
+import com.solvd.atm.utils.exchange.Exchange;
 
 import java.util.Scanner;
 
@@ -21,15 +22,15 @@ public class AccountInfoMenu {
         int chooseCurrency = SCANNER.nextInt();
         switch (chooseCurrency) {
             case 1 -> LOGGER.info("Your balance in USD " +
-                    CurrencyService.calculateBalance(account, "USD"));
+                    Exchange.getExchangeAmount(account.getCurrency(), "USD", account.getTotalSum()));
             case 2 -> LOGGER.info("Your balance in BYN " +
-                    CurrencyService.calculateBalance(account, "BYN"));
+                    Exchange.getExchangeAmount(account.getCurrency(), "BYN", account.getTotalSum()));
             case 3 -> LOGGER.info("Your balance in EUR " +
-                    CurrencyService.calculateBalance(account, "EUR"));
+                    Exchange.getExchangeAmount(account.getCurrency(), "EUR", account.getTotalSum()));
             case 4 -> LOGGER.info("Your balance in RUB " +
-                    CurrencyService.calculateBalance(account, "RUB"));
+                    Exchange.getExchangeAmount(account.getCurrency(), "RUB", account.getTotalSum()));
             case 5 -> LOGGER.info("Your balance in GBP " +
-                    CurrencyService.calculateBalance(account, "GBP"));
+                    Exchange.getExchangeAmount(account.getCurrency(), "GBP", account.getTotalSum()));
         }
     }
 }
