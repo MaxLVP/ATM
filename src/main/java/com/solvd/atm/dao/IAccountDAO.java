@@ -42,4 +42,17 @@ public interface IAccountDAO extends IBaseDAO<Account> {
             @Result(property = "totalSum", column = "amount")
     })
     Account getAccountByCardId(@Param("id_card") long id);
+
+    @Select("""
+            SELECT id_account, opening_date, amount
+            FROM account
+            LEFT JOIN users
+            ON id_user = account.users_id_user
+            WHERE id_user = #{id_user}""")
+    @Results(value = {
+            @Result(property = "idAccount", column = "id_account"),
+            @Result(property = "openingDate", column = "opening_date"),
+            @Result(property = "totalSum", column = "amount")
+    })
+    List<Account> getAllAccountsByUserId(@Param("id_user") long id);
 }

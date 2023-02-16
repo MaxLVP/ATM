@@ -54,4 +54,9 @@ public class UserDAO implements IUserDAO {
         }
         return true;
     }
+
+    @Override
+    public User getEntityByAccountId(long id) {
+        return iUserDAO.getEntityByAccountId(id);
+    }
 }

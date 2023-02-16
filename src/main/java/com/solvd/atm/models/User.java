@@ -36,6 +36,14 @@ public class User {
         this.passportID = passportID;
     }
 
+    public long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(long idUser) {
+        this.idUser = idUser;
+    }
+
     public User() {
     }
 }
