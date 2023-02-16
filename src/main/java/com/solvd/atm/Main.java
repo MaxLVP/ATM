@@ -1,6 +1,5 @@
 package com.solvd.atm;
 
-import com.solvd.atm.models.ATM;
 import com.solvd.atm.services.AccountService;
 import com.solvd.atm.utils.threads.AccountPool;
 

@@ -46,12 +46,12 @@ public class MainMenu {
                 LOGGER.info("Firstly get back another card from ATM");
             } else {
                 CURRENT_ATM.setCard(card);
-                mainCardMenu(card);
+                mainCardMenu(card, CURRENT_ATM);
             }
         }
         else {
             LOGGER.info("You already have card in this ATM, going to card menu");
-            mainCardMenu(CURRENT_ATM.getCard());
+            mainCardMenu(CURRENT_ATM.getCard(), CURRENT_ATM);
         }
 
     }
