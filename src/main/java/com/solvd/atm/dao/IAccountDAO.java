@@ -11,7 +11,7 @@ public interface IAccountDAO extends IBaseDAO<Account> {
     @Results(value = {
             @Result(property = "idAccount", column = "id_account"),
             @Result(property = "openingDate", column = "opening_date"),
-            @Result(property = "currency", column = "amount"),
+            @Result(property = "currency", column = "name_currency"),
             @Result(property = "totalSum", column = "amount")
     })
     Account getEntityById(@Param("id_account") long id_account);
@@ -32,7 +32,7 @@ public interface IAccountDAO extends IBaseDAO<Account> {
     @Results(value = {
             @Result(property = "idAccount", column = "id_account"),
             @Result(property = "openingDate", column = "opening_date"),
-            @Result(property = "currency", column = "amount"),
+            @Result(property = "currency", column = "name_currency"),
             @Result(property = "totalSum", column = "amount")
     })
     List<Account> getAllAccounts();
@@ -41,7 +41,7 @@ public interface IAccountDAO extends IBaseDAO<Account> {
     @Results(value = {
             @Result(property = "idAccount", column = "id_account"),
             @Result(property = "openingDate", column = "opening_date"),
-            @Result(property = "currency", column = "amount"),
+            @Result(property = "currency", column = "name_currency"),
             @Result(property = "totalSum", column = "amount")
     })
     Account getAccountByCardId(@Param("id_card") long id);
@@ -55,7 +55,7 @@ public interface IAccountDAO extends IBaseDAO<Account> {
     @Results(value = {
             @Result(property = "idAccount", column = "id_account"),
             @Result(property = "openingDate", column = "opening_date"),
-            @Result(property = "currency", column = "amount"),
+            @Result(property = "currency", column = "name_currency"),
             @Result(property = "totalSum", column = "amount")
     })
     List<Account> getAllAccountsByUserId(@Param("id_user") long id);
