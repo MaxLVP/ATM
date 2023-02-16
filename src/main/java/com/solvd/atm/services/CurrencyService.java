@@ -23,4 +23,9 @@ public class CurrencyService {
         }
         return convertedBalance;
     }
+
+    public static double getCourseByCurrency(String currencyName) {
+        Currency currency = CURRENCY_DAO.getEntityByCurrencyName(currencyName);
+        return currency.getCourse();
+    }
 }
