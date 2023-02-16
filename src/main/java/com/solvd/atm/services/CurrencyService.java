@@ -11,4 +11,8 @@ public class CurrencyService {
         Currency currency = CURRENCY_DAO.getEntityByCurrencyName(currencyName);
         return currency.getCourse();
     }
+
+    public static Currency getCurrencyByName(String currencyName) {
+        return CURRENCY_DAO.getEntityByCurrencyName(currencyName);
+    }
 }
