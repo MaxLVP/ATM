@@ -8,7 +8,9 @@ import java.util.Objects;
 
 public class Exchange {
 
-    public static double getExchangeAmount(Currency currencyBefore, Currency currencyAfter, double amount) {
+    public static double getExchangeAmount(String cBefore, String cAfter, double amount) {
+        Currency currencyBefore = CurrencyService.getCurrencyByName(cBefore);
+        Currency currencyAfter = CurrencyService.getCurrencyByName(cAfter);
         if (Objects.equals(currencyBefore.getName(), currencyAfter.getName())) {
             return amount;
         } else {
