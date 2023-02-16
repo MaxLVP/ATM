@@ -16,9 +16,8 @@ public class Exchange {
         } else {
             double course = CurrencyService.getCourseByCurrency(currencyBefore.getName());
             double amountToUSD = amount / course;
-            double resultAmount = amountToUSD * CurrencyService.getCourseByCurrency(currencyAfter.getName());
+            return amountToUSD * CurrencyService.getCourseByCurrency(currencyAfter.getName());
         }
-        return amount;
     }
 
 }
