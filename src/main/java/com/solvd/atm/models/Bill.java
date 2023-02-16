@@ -1,5 +1,7 @@
 package com.solvd.atm.models;
 
+import java.util.Comparator;
+
 public class Bill {
     private long idBill;
     private int rating;
@@ -48,4 +50,11 @@ public class Bill {
 
     public Bill() {
     }
+
+    public static final Comparator<Bill> COMPARE_BY_COUNT = new Comparator<Bill>() {
+        @Override
+        public int compare(Bill o1, Bill o2) {
+            return o1.getCount() - o2.getCount();
+        }
+    };
 }
