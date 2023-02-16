@@ -25,8 +25,14 @@ public class AccountDAO implements IAccountDAO {
     }
 
     @Override
-    public boolean updateEntity(long id_account) {
-        return false;
+    public boolean updateEntity(double amount, long id_account) {
+        try {
+            iAccountDAO.updateEntity(amount, id_account);
+            sqlSession.commit();
+        } catch (Exception e) {
+            sqlSession.rollback();
+        }
+        return true;
     }
 
     @Override

@@ -16,7 +16,7 @@ public interface IAccountDAO extends IBaseDAO<Account> {
     Account getEntityById(@Param("id_account") long id_account);
 
     @Update("UPDATE account SET amount = #{amount} WHERE id_account = #{id_account}")
-    boolean updateEntity(@Param("id_account") long id_account);
+    boolean updateEntity(@Param("amount") double amount, @Param("id_account") long id_account);
 
     @Insert("INSERT INTO account (id_account, opening_date, amount, name_currency, users_id_user) VALUES " +
             "(#{id_account}, #{opening_date}, #{amount}, #{name_currency}, #{id_user})")
