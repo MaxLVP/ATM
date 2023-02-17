@@ -1,16 +1,24 @@
 package com.solvd.atm.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "userModel")
 @XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName(value="userModel")
 public class User {
     @XmlAttribute
+    @JsonProperty("idUser")
     private long idUser;
     @XmlElement
+    @JsonProperty("firstName")
     private String firstName;
     @XmlElement
+    @JsonProperty("lastName")
     private String lastName;
     @XmlElement
+    @JsonProperty("passportId")
     private String passportID;
 
     public User() {
