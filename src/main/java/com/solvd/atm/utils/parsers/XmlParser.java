@@ -11,6 +11,7 @@ import java.io.File;
 
 public class XmlParser {
     private static final MyLogger LOGGER = MyLogger.getInstance();
+    private static final File XML_FILE = new File("src/main/resources/checks/checks.xml");
 
     public static void writeToXml() {
         ChecksList checksList = new ChecksList();
@@ -20,7 +21,7 @@ public class XmlParser {
             Marshaller m = jaxB.createMarshaller();
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             m.marshal(checksList,
-                    new File("src/main/resources/checks/checks.xml"));
+                    XML_FILE);
         } catch (JAXBException ex) {
             LOGGER.error("Failed to print xml file");
             LOGGER.error(ex.getMessage());
