@@ -2,7 +2,6 @@ package com.solvd.atm.utils.parsers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.solvd.atm.models.Check;
 import com.solvd.atm.models.ChecksList;
 import com.solvd.atm.utils.collections.AllChecksCollection;
 import org.apache.logging.log4j.LogManager;
