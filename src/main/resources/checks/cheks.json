@@ -1,0 +1,1 @@
+{"idCheck":0,"user":{"idUser":1,"firstName":"Maria","lastName":"Denisova","passportID":"234567"},"account":{"idAccount":123,"openingDate":1653253200000,"totalSum":10.0,"currency":"USD","owner":{"idUser":1,"firstName":"Maria","lastName":"Denisova","passportID":"234567"}},"operation":"TOP UP PHONE BALANCE","amount":5.0}

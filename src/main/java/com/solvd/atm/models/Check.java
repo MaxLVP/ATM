@@ -1,11 +1,23 @@
 package com.solvd.atm.models;
 
+import javax.xml.bind.annotation.*;
+@XmlRootElement(name = "modelCheck")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Check {
+    @XmlAttribute
     private long idCheck;
+    @XmlElement
     private User user;
+    @XmlElement
     private Account account;
+    @XmlElement
     private String operation;
+    @XmlElement
     private double amount;
+
+    public Check () {
+
+    }
 
     public Check(User user, Account account, String operation, double amount) {
         this.user = user;

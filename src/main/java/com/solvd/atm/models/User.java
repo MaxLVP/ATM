@@ -1,9 +1,16 @@
 package com.solvd.atm.models;
 
+import javax.xml.bind.annotation.*;
+@XmlRootElement(name = "userModel")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class User {
+    @XmlAttribute
     private long idUser;
+    @XmlElement
     private String firstName;
+    @XmlElement
     private String lastName;
+    @XmlElement
     private String passportID;
 
     public User() {

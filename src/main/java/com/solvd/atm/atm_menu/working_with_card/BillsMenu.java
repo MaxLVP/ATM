@@ -8,6 +8,7 @@ import com.solvd.atm.services.FineService;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.utils.collections.AllChecksCollection;
 import com.solvd.atm.utils.exchange.Exchange;
+import com.solvd.atm.utils.parsers.JsonParser;
 
 import java.util.Scanner;
 
@@ -50,6 +51,7 @@ public class BillsMenu {
                             (account.getOwner(), account, "TOP UP PHONE BALANCE", amount);
                     LOGGER.info(check);
                     AllChecksCollection.addToCheckList(check);
+                    JsonParser.writeToJSON(check);
                 } else {
                     LOGGER.info("Your current account balance: " + account.getTotalSum() + " " + account.getCurrency());
                 }
@@ -84,6 +86,7 @@ public class BillsMenu {
                             (account.getOwner(), account, "INTERNET PAYMENT", amount);
                     LOGGER.info(check);
                     AllChecksCollection.addToCheckList(check);
+                    JsonParser.writeToJSON(check);
                 } else {
                     LOGGER.info("Your current account balance: " + account.getTotalSum() + " " + account.getCurrency());
                 }
@@ -122,6 +125,7 @@ public class BillsMenu {
                                 (account.getOwner(), account, "FINES PAYMENT", fine.getFineAmount());
                         LOGGER.info(check);
                         AllChecksCollection.addToCheckList(check);
+                        JsonParser.writeToJSON(check);
                     } else {
                         LOGGER.info("Your current account balance: " + account.getTotalSum() + " " + account.getCurrency());
                     }
