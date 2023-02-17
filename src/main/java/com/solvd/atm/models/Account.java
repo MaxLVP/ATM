@@ -1,5 +1,8 @@
 package com.solvd.atm.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import com.solvd.atm.utils.parsers.DateAdapter;
 
 import javax.xml.bind.annotation.*;
@@ -8,17 +11,25 @@ import java.util.Date;
 
 @XmlRootElement(name = "accountModel")
 @XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName(value = "accountModel")
 public class Account {
     @XmlAttribute
+    @JsonProperty("idAccount")
     private long idAccount;
     @XmlElement
     @XmlJavaTypeAdapter(DateAdapter.class)
+    @JsonProperty("openingDate")
+    @JsonFormat(shape = JsonFormat.Shape.STRING,
+            pattern = "dd-MM-yyyy hh:mm:ss")
     private Date openingDate;
     @XmlElement
+    @JsonProperty("totalSum")
     private double totalSum;
     @XmlElement
+    @JsonProperty("currency")
     private String currency;
     @XmlElement
+    @JsonProperty("owner")
     private User owner = null;
 
     public Account() {

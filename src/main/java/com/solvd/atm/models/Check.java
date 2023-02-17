@@ -1,18 +1,27 @@
 package com.solvd.atm.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import javax.xml.bind.annotation.*;
 @XmlRootElement(name = "modelCheck")
 @XmlAccessorType(XmlAccessType.FIELD)
+@JsonRootName(value = "modelCheck")
 public class Check {
     @XmlAttribute
+    @JsonProperty("idCheck")
     private long idCheck;
     @XmlElement
+    @JsonProperty("user")
     private User user;
     @XmlElement
+    @JsonProperty("account")
     private Account account;
     @XmlElement
+    @JsonProperty("operation")
     private String operation;
     @XmlElement
+    @JsonProperty("amount")
     private double amount;
 
     public Check () {
