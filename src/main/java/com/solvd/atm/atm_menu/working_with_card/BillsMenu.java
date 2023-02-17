@@ -51,7 +51,7 @@ public class BillsMenu {
                             (account.getOwner(), account, "TOP UP PHONE BALANCE", amount);
                     LOGGER.info(check);
                     AllChecksCollection.addToCheckList(check);
-                    JsonParser.writeToJSON(check);
+
                 } else {
                     LOGGER.info("Your current account balance: " + account.getTotalSum() + " " + account.getCurrency());
                 }
@@ -86,7 +86,7 @@ public class BillsMenu {
                             (account.getOwner(), account, "INTERNET PAYMENT", amount);
                     LOGGER.info(check);
                     AllChecksCollection.addToCheckList(check);
-                    JsonParser.writeToJSON(check);
+
                 } else {
                     LOGGER.info("Your current account balance: " + account.getTotalSum() + " " + account.getCurrency());
                 }
@@ -125,7 +125,7 @@ public class BillsMenu {
                                 (account.getOwner(), account, "FINES PAYMENT", fine.getFineAmount());
                         LOGGER.info(check);
                         AllChecksCollection.addToCheckList(check);
-                        JsonParser.writeToJSON(check);
+
                     } else {
                         LOGGER.info("Your current account balance: " + account.getTotalSum() + " " + account.getCurrency());
                     }
