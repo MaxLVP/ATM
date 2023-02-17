@@ -9,6 +9,8 @@ import java.io.File;
 
 public  class JsonParser {
     protected final static Logger LOGGER = LogManager.getLogger(JsonParser.class);
+    //сюда путь к файлу, принмиаем мы лист
+
 
     public static void writeToJSON(Check check) {
         ObjectMapper mapper = new ObjectMapper();
