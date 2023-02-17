@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<checks>
+    <check idCheck="1">
+        <user idUser="0">
+            <firstName>Artem</firstName>
+            <lastName>Khivyk</lastName>
+            <passportID>1234</passportID>
+        </user>
+        <account idAccount="0">
+            <totalSum>0.0</totalSum>
+        </account>
+        <operation>FINES PAYMENT</operation>
+        <amount>100.0</amount>
+    </check>
+    <check idCheck="2">
+        <user idUser="0">
+            <firstName>Artem</firstName>
+            <lastName>Khivyk</lastName>
+            <passportID>1234</passportID>
+        </user>
+        <account idAccount="0">
+            <totalSum>0.0</totalSum>
+        </account>
+        <operation>FINES PAYMENT</operation>
+        <amount>100.0</amount>
+    </check>
+    <check idCheck="3">
+        <user idUser="0">
+            <firstName>Artem</firstName>
+            <lastName>Khivyk</lastName>
+            <passportID>1234</passportID>
+        </user>
+        <account idAccount="0">
+            <totalSum>0.0</totalSum>
+        </account>
+        <operation>FINES PAYMENT</operation>
+        <amount>100.0</amount>
+    </check>
+</checks>

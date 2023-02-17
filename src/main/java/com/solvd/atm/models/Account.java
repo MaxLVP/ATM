@@ -1,12 +1,24 @@
 package com.solvd.atm.models;
 
+import com.solvd.atm.utils.parsers.DateAdapter;
+
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
 
+@XmlRootElement(name = "accountModel")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Account {
+    @XmlAttribute
     private long idAccount;
+    @XmlElement
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date openingDate;
+    @XmlElement
     private double totalSum;
+    @XmlElement
     private String currency;
+    @XmlElement
     private User owner = null;
 
     public Account() {
@@ -55,7 +67,7 @@ public class Account {
                 "idAccount=" + idAccount +
                 ", openingDate=" + openingDate +
                 ", totalSum=" + totalSum +
-                ", currency=" + currency +
+                ", currency='" + currency + '\'' +
                 ", owner=" + owner +
                 '}';
     }
