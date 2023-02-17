@@ -12,7 +12,6 @@ public class AllChecksCollection extends ArrayList<Check> {
     public static List<Check> getAllChecks() {
         return CHECK_LIST;
     }
-
     public static void addToCheckList(Check check) {
         CHECK_LIST.add(check);
     }

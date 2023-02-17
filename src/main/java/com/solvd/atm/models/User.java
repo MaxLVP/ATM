@@ -1,7 +1,6 @@
 package com.solvd.atm.models;
 
 import javax.xml.bind.annotation.*;
-
 @XmlRootElement(name = "userModel")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class User {
