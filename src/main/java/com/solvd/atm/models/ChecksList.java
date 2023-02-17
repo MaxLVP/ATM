@@ -1,6 +1,4 @@
-package com.solvd.atm.utils.parsers;
-
-import com.solvd.atm.models.Check;
+package com.solvd.atm.models;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -10,7 +8,7 @@ import java.util.List;
 
 @XmlRootElement(name = "checks")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ChecksCollection {
+public class ChecksList {
     @XmlElement(name = "check")
     private List<Check> checkList;
 
