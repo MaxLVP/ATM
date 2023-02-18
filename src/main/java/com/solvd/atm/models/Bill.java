@@ -7,7 +7,7 @@ public class Bill {
     private int rating;
     private int count;
 
-    private Currency currency;
+    private String currency;
 
     public int getRating() {
         return rating;
@@ -39,10 +39,10 @@ public class Bill {
         count += delta;
         return count;
     }
-    public Currency getCurrency() {
+    public String getCurrency() {
         return currency;
     }
-    public Bill(int rating, int count, Currency currency) {
+    public Bill(int rating, int count, String currency) {
         this.rating = rating;
         this.count = count;
         this.currency = currency;
@@ -57,4 +57,21 @@ public class Bill {
             return o1.getCount() - o2.getCount();
         }
     };
+
+    public static final Comparator<Bill> COMPARE_BY_RATING = new Comparator<Bill>() {
+        @Override
+        public int compare(Bill o1, Bill o2) {
+            return o1.getRating() - o2.getRating();
+        }
+    };
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "idBill=" + idBill +
+                ", rating=" + rating +
+                ", count=" + count +
+                ", currency=" + currency +
+                '}';
+    }
 }
