@@ -5,7 +5,6 @@ import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Bill;
 import com.solvd.atm.utils.MyLogger;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -16,7 +15,6 @@ public class AddingMoneyMenu {
     public static void addMoneyToAccount(Account account, ATM atm) {
         LOGGER.info("Enter currency");
         String currency = SCANNER.next();
-        ArrayList<Bill> billsToAdd = new ArrayList<>();
         int sum = 0;
         while (true) {
             LOGGER.info("Enter bill rating or 0 to stop");
@@ -31,7 +29,7 @@ public class AddingMoneyMenu {
                     canAddNew.set(false);
                 }
             });
-            //adding new bill if no bills of such values were in atm (bill never existed in the list)
+            //adding new bill if no bills of such values were in atm (bill never existed in the list)?
             if (canAddNew.get()) {
                 atm.getBills().add(new Bill(billRating, 1, currency));
             }

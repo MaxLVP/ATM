@@ -18,23 +18,23 @@ public class TransferMenu {
 
     public static void transferMoneyFromAccount(Account account) {
         LOGGER.info("Choose where you want to transfer money");
-        LOGGER.info("1. Between you accounts");
+        LOGGER.info("1. Between your accounts");
         LOGGER.info("2. Transfer to another account");
         int point = SCANNER.nextInt();
         switch (point) {
             case 1 -> transferMoneyBetweenUserAccounts(account);
             case 2 -> transferToAnyAccount(account);
             default -> {
-                LOGGER.info("You choose invalid point, try again :(");
+                LOGGER.info("You've chosen invalid item, try again :(");
                 transferMoneyFromAccount(account);
             }
         }
     }
 
     public static void transferMoneyBetweenUserAccounts(Account accountFromTransfer) {
-        LOGGER.info("Choose id of account, you want to transfer money");
+        LOGGER.info("Choose id of the account, where you want to transfer money");
         List<Account> userAccountList = AccountService.getAllAccountsByUser(accountFromTransfer.getOwner());
-        LOGGER.info("You accounts, please choose one");
+        LOGGER.info("Your accounts, please choose one");
         for (Account userAccount: userAccountList) {
             LOGGER.info(userAccount);
         }
@@ -51,7 +51,7 @@ public class TransferMenu {
     }
 
     public static void transferToAnyAccount(Account accountFromTransfer) {
-        LOGGER.info("Choose id of account, you want to transfer money");
+        LOGGER.info("Choose id of the account, where you want to transfer money");
         List<Account> accountList = AccountService.getAllAccounts();
         for (Account account: accountList) {
             LOGGER.info(account);
@@ -69,10 +69,10 @@ public class TransferMenu {
     }
 
     public static void transferMoney(Account start, Account end) {
-        LOGGER.info("Choose what sum you want to transfer");
+        LOGGER.info("Enter the sum to transfer");
         double money = SCANNER.nextInt();
         if (money > start.getTotalSum()) {
-            LOGGER.info("You don't have enough money to pay, try another sum");
+            LOGGER.info("You don't have enough money to pay, try less sum");
             transferMoney(start, end);
         }
         start.setTotalSum(start.getTotalSum() - money);
@@ -81,10 +81,10 @@ public class TransferMenu {
         end.setTotalSum(end.getTotalSum() + endMoney);
         boolean end_update = AccountService.updateAmountOnAccount(end);
         if (start_update && end_update) {
-            LOGGER.info("Money were successfully transfer");
+            LOGGER.info("Money were successfully transferred");
             getCheckOfOperation(start, money);
         } else {
-            LOGGER.info("Money are not transfer, try again later");
+            LOGGER.info("Money are not transferred, try again later");
         }
     }
 
