@@ -4,6 +4,7 @@ import com.solvd.atm.models.ATM;
 import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Bill;
 import com.solvd.atm.utils.MyLogger;
+import com.solvd.atm.utils.exchange.Exchange;
 
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -35,7 +36,9 @@ public class AddingMoneyMenu {
             }
             sum += billRating;
         }
-        //converting to account currency?
-        account.incTotalSum(sum);
+        //converting to account currency
+        //exception might be thrown, check currency right after input
+        double sumToAdd = Exchange.getExchangeAmount(currency, account.getCurrency(), sum);
+        account.incTotalSum(sumToAdd);
     }
 }

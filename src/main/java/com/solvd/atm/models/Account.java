@@ -75,11 +75,11 @@ public class Account {
         this.openingDate = openingDate;
     }
 
-    public void decTotalSum(int sum) {
+    public void decTotalSum(double sum) {
         totalSum -= sum;
     }
 
-    public void incTotalSum(int sum) {
+    public void incTotalSum(double sum) {
         totalSum += sum;
     }
 
