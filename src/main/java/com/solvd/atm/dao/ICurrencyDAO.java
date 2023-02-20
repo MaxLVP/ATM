@@ -13,7 +13,7 @@ public interface ICurrencyDAO extends IBaseDAO<Currency> {
     })
     Currency getEntityByCurrencyName(@Param("currency_name") String nameCurrency);
 
-    @Update("UPDATE currency SET currency_name = #{currency_name}")
+    @Update("UPDATE currency SET currency_name = #{name}")
     boolean updateEntity(Currency entity);
 
     @Select("SELECT course, id_currency, currency_name FROM currency")

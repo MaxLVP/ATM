@@ -45,4 +45,6 @@ public class Currency {
         return (sum / oldCourse) * course;
     }
 
+
+
 }
