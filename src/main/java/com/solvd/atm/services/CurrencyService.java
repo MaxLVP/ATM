@@ -4,6 +4,8 @@ import com.solvd.atm.dao.ICurrencyDAO;
 import com.solvd.atm.dao.mysql.CurrencyDAO;
 import com.solvd.atm.models.Currency;
 
+import java.util.List;
+
 public class CurrencyService {
     private static final ICurrencyDAO CURRENCY_DAO = new CurrencyDAO();
 
@@ -14,5 +16,13 @@ public class CurrencyService {
 
     public static Currency getCurrencyByName(String currencyName) {
         return CURRENCY_DAO.getEntityByCurrencyName(currencyName);
+    }
+
+    public static boolean updateCurrency(Currency currency) {
+        return CURRENCY_DAO.updateEntity(currency);
+    }
+
+    public static List<Currency> getListOfCurrency() {
+        return CURRENCY_DAO.getAllCurrency();
     }
 }
