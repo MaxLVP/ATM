@@ -71,16 +71,9 @@ public class Account {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
     public void setOpeningDate(Date openingDate) {
         this.openingDate = openingDate;
-    }
-
-    public void decTotalSum(double sum) {
-        totalSum -= sum;
-    }
-
-    public void incTotalSum(double sum) {
-        totalSum += sum;
     }
 
     @Override

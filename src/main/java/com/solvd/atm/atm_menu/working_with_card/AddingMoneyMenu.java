@@ -3,6 +3,7 @@ package com.solvd.atm.atm_menu.working_with_card;
 import com.solvd.atm.models.ATM;
 import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Bill;
+import com.solvd.atm.services.AccountService;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.utils.exchange.Exchange;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class AddingMoneyMenu {
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final MyLogger LOGGER = MyLogger.getInstance();
+
     public static void addMoneyToAccount(Account account, ATM atm) {
         LOGGER.info("Enter currency");
         String currency = SCANNER.next();
@@ -39,6 +41,13 @@ public class AddingMoneyMenu {
         //converting to account currency
         //exception might be thrown, check currency right after input
         double sumToAdd = Exchange.getExchangeAmount(currency, account.getCurrency(), sum);
-        account.incTotalSum(sumToAdd);
+        account.setTotalSum(account.getTotalSum() + sumToAdd);
+        boolean flag = AccountService.updateAmountOnAccount(account);
+        if (flag) {
+            LOGGER.info("Money were successfully add to account");
+        }
+        else {
+            LOGGER.info("Money were not add, try again");
+        }
     }
 }
