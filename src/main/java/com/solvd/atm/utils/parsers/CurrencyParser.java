@@ -26,13 +26,20 @@ public class CurrencyParser {
         for (Currency currency: currencies) {
             if (currency.getName().equals(RUB_CURRENCY_NAME)) {
                 currency.setCourse(RUB_CURRENCY_VALUE);
-            }
-            currency.setCourse(jsonPath.getDouble(String.format("%s.%s.%s", NAME_TO_PARSE, currency.getName(), VALUE_TO_PARSE)));
-            boolean flag = CurrencyService.updateCurrency(currency);
-            if (flag) {
-                LOGGER.info("Currency " + currency.getName() + " was update ");
+                boolean flag = CurrencyService.updateCurrency(currency);
+                if (flag) {
+                    LOGGER.info("Currency " + currency.getName() + " was update ");
+                } else {
+                    LOGGER.info("Failed to update currency " + currency.getName());
+                }
             } else {
-                LOGGER.info("Failed to update currency " + currency.getName());
+                currency.setCourse(jsonPath.getDouble(String.format("%s.%s.%s", NAME_TO_PARSE, currency.getName(), VALUE_TO_PARSE)));
+                boolean flag = CurrencyService.updateCurrency(currency);
+                if (flag) {
+                    LOGGER.info("Currency " + currency.getName() + " was update ");
+                } else {
+                    LOGGER.info("Failed to update currency " + currency.getName());
+                }
             }
         }
     }
