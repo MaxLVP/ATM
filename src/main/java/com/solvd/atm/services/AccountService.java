@@ -25,8 +25,12 @@ public class AccountService {
 
     public static Account getAccountByCard(Card card) {
         Account account = ACCOUNT_DAO.getAccountByCardId(card.getId());
-        account.setOwner(USER_DAO.getEntityByAccountId(account.getIdAccount()));
-        return account;
+        if (account != null) {
+            account.setOwner(USER_DAO.getEntityByAccountId(account.getIdAccount()));
+            return account;
+        } else {
+            return null;
+        }
     }
 
     public static List<Account> getAllAccountsByUser(User user) {
