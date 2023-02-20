@@ -6,10 +6,11 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 public interface ICurrencyDAO extends IBaseDAO<Currency> {
-    @Select("SELECT course, id_currency FROM currency WHERE currency_name = #{currency_name}")
+    @Select("SELECT course, id_currency, currency_name FROM currency WHERE currency_name = #{currency_name}")
     @Results(value = {
             @Result(property = "idCurrency", column = "id_currency"),
-            @Result(property = "course", column = "course")
+            @Result(property = "course", column = "course"),
+            @Result(property = "name" , column = "currency_name")
     })
     Currency getEntityByCurrencyName(@Param("currency_name") String nameCurrency);
 
