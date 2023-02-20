@@ -1,7 +1,9 @@
 package com.solvd.atm;
 
+import com.solvd.atm.atm_menu.working_with_card.AddingMoneyMenu;
 import com.solvd.atm.atm_menu.working_with_card.WithdrawMenu;
 import com.solvd.atm.models.ATM;
+import com.solvd.atm.models.Account;
 import com.solvd.atm.services.AccountService;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.utils.threads.AccountPool;
@@ -13,14 +15,10 @@ import static com.solvd.atm.atm_menu.MainMenu.mainMenu;
 public class Main {
     private static final MyLogger LOGGER = MyLogger.getInstance();
     public static void main(String[] args) throws JAXBException {
-        //
-        ATM atm = new ATM();
-        WithdrawMenu.withdrawMoney(atm, 1051);
-        //
-//        AccountPool.addAccountToPool(AccountService.getAllAccounts());
-//        boolean exit = false;
-//        while (!exit) {
-//            exit = mainMenu(false);
-//        }
+        AccountPool.addAccountToPool(AccountService.getAllAccounts());
+        boolean exit = false;
+        while (!exit) {
+            exit = mainMenu(false);
+        }
     }
 }
