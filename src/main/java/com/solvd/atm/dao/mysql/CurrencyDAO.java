@@ -20,7 +20,13 @@ public class CurrencyDAO implements ICurrencyDAO {
 
     @Override
     public boolean updateEntity(Currency entity) {
-        return iCurrencyDAO.updateEntity(entity);
+        try {
+            iCurrencyDAO.updateEntity(entity);
+            sqlSession.commit();
+        } catch (Exception ex) {
+            sqlSession.rollback();
+        }
+        return true;
     }
 
     @Override
