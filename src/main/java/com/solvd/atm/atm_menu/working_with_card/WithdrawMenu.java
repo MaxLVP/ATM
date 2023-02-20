@@ -3,12 +3,10 @@ package com.solvd.atm.atm_menu.working_with_card;
 import com.solvd.atm.models.ATM;
 import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Bill;
+import com.solvd.atm.services.AccountService;
 import com.solvd.atm.utils.MyLogger;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.stream.Collectors;
 
 public class WithdrawMenu {
     private static final int TOTAL_COMBINATIONS = 3;
@@ -49,7 +47,14 @@ public class WithdrawMenu {
                     .get().decCount(b.getCount());
         });
 
-        account.decTotalSum(sum);
+        account.setTotalSum(account.getTotalSum() - sum);
+        boolean flag = AccountService.updateAmountOnAccount(account);
+        if (flag) {
+            LOGGER.info("Money were successfully withdraw from account");
+        }
+        else {
+            LOGGER.info("Money were not withdraw, try again");
+        }
     }
 
     private static ArrayList<ArrayList<Bill>> withdrawMoney(Account account, ATM atm, int sum) {
