@@ -15,6 +15,8 @@ public class CurrencyParser {
     private static final String URL_TO_PARSE = "https://www.cbr-xml-daily.ru/daily_json.js";
     private static final String NAME_TO_PARSE = "Valute";
     private static final String VALUE_TO_PARSE = "Value";
+    private static final String RUB_CURRENCY_NAME = "RUB";
+    private static final Double RUB_CURRENCY_VALUE = 1.0;
 
     public static void updateCurrency() {
         RestAssured.baseURI = URL_TO_PARSE;
@@ -22,6 +24,9 @@ public class CurrencyParser {
         JsonPath jsonPath = response.jsonPath();
         List<Currency> currencies = CurrencyService.getListOfCurrency();
         for (Currency currency: currencies) {
+            if (currency.getName().equals(RUB_CURRENCY_NAME)) {
+                currency.setCourse(RUB_CURRENCY_VALUE);
+            }
             currency.setCourse(jsonPath.getDouble(String.format("%s.%S.%S", NAME_TO_PARSE, currency.getName(), VALUE_TO_PARSE)));
             boolean flag = CurrencyService.updateCurrency(currency);
             if (flag) {
