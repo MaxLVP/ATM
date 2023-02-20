@@ -37,4 +37,12 @@ public class Currency {
         this.course = course;
     }
 
+    @Override
+    public String toString() {
+        return "Currency{" +
+                "idCurrency=" + idCurrency +
+                ", name='" + name + '\'' +
+                ", course=" + course +
+                '}';
+    }
 }

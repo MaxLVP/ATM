@@ -35,6 +35,7 @@ public class CurrencyParser {
             } else {
                 currency.setCourse(jsonPath.getDouble(String.format("%s.%s.%s", NAME_TO_PARSE, currency.getName(), VALUE_TO_PARSE)));
                 boolean flag = CurrencyService.updateCurrency(currency);
+
                 if (flag) {
                     LOGGER.info("Currency " + currency.getName() + " was update ");
                 } else {

@@ -7,6 +7,7 @@ import com.solvd.atm.utils.threads.AccountPool;
 import static com.solvd.atm.atm_menu.MainMenu.mainMenu;
 
 public class Main {
+
     public static void main(String[] args) {
         CurrencyParser.updateCurrency();
         AccountPool.addAccountToPool(AccountService.getAllAccounts());
