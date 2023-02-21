@@ -75,7 +75,8 @@ public class WithdrawMenu {
         boolean flag = AccountService.updateAmountOnAccount(account);
         if (flag) {
             LOGGER.info("Money were successfully withdrawn from account");
-            atm.getBills().forEach(BillService::updateBill);
+            atm.getBills().forEach(b -> BillService.updateBill(b.getIdBill(), b.getCount()));
+            atm.getBills().forEach(b -> BillService.updateBill(b.getIdBill(), b.getCount()));
         } else {
             LOGGER.info("Money were not withdrawn, try again");
             atm.setBills((ArrayList<Bill>) BillService.getBillsByATMId(atm.getId()));

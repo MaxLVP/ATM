@@ -70,7 +70,7 @@ public class AddingMoneyMenu {
         boolean flag = AccountService.updateAmountOnAccount(account);
         if (flag) {
             LOGGER.info("Money were successfully added to account");
-            atm.getBills().forEach(BillService::updateBill);
+            atm.getBills().forEach(b -> BillService.updateBill(b.getIdBill(), b.getCount()));
         } else {
             LOGGER.info("Money were not added, try again");
             atm.setBills((ArrayList<Bill>) BillService.getBillsByATMId(atm.getId()));

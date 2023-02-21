@@ -19,7 +19,7 @@ public class BillService {
         return result;
     }
 
-    public static boolean updateBill(Bill bill) {
-        return BILL_DAO.updateEntity(bill.getIdBill(), bill.getCount());
+    public static boolean updateBill(long id_banknote, int banknote_count) {
+        return BILL_DAO.updateEntity(id_banknote, banknote_count);
     }
 }

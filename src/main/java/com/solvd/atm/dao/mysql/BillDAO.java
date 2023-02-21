@@ -20,7 +20,13 @@ public class BillDAO implements IBillDAO {
 
     @Override
     public boolean updateEntity(long id_banknote, int banknote_count) {
-        return iBillDAO.updateEntity(id_banknote, banknote_count);
+        try {
+            iBillDAO.updateEntity(id_banknote, banknote_count);
+            sqlSession.commit();
+        } catch (Exception e) {
+            sqlSession.rollback();
+        }
+        return true;
     }
 
     @Override
