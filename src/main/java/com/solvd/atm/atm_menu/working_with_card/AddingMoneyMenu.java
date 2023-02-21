@@ -4,10 +4,13 @@ import com.solvd.atm.models.ATM;
 import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Bill;
 import com.solvd.atm.services.AccountService;
+import com.solvd.atm.services.BillService;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.utils.exchange.Exchange;
 
-import java.util.Scanner;
+import javax.lang.model.element.Element;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
@@ -18,24 +21,47 @@ public class AddingMoneyMenu {
     public static void addMoneyToAccount(Account account, ATM atm) {
         LOGGER.info("Enter currency");
         String currency = SCANNER.next();
+        boolean canContinue = false;
+        CurrencyInfo currencyInfo = null;
+        for (CurrencyInfo element: CurrencyInfo.values()) {
+            if (element.currencyString.equals(currency)) {
+                canContinue = true;
+                currencyInfo = element;
+            }
+        }
+        if (!canContinue) {
+            LOGGER.info("Wrong currency");
+            return;
+        }
         int sum = 0;
+        int billRating;
         while (true) {
             LOGGER.info("Enter bill rating or 0 to stop");
-            int billRating = SCANNER.nextInt();
-            if (billRating <= 0) {
+            try {
+                billRating = SCANNER.nextInt();
+            }
+            catch (Exception e) {
+                continue;
+            }
+            if (billRating == 0) {
                 break;
             }
-            AtomicBoolean canAddNew = new AtomicBoolean(true);
+            int finalBillRating = billRating;
+            if (Arrays.stream(currencyInfo.possibleValues).noneMatch(p -> p == finalBillRating)) {
+                LOGGER.info("There is no such bill, try again");
+                continue;
+            }
+            //AtomicBoolean canAddNew = new AtomicBoolean(true);
             atm.getBills().forEach(b -> {
-                if (b.getCurrency().equals(currency) && b.getRating() == billRating) {
+                if (b.getCurrency().equals(currency) && b.getRating() == finalBillRating) {
                     b.incCount(1);
-                    canAddNew.set(false);
+                    //canAddNew.set(false);
                 }
             });
             //adding new bill if no bills of such values were in atm (bill never existed in the list)?
-            if (canAddNew.get()) {
-                atm.getBills().add(new Bill(billRating, 1, currency));
-            }
+//            if (canAddNew.get()) {
+//                atm.getBills().add(new Bill(billRating, 1, currency));
+//            }
             sum += billRating;
         }
         //converting to account currency
@@ -44,10 +70,27 @@ public class AddingMoneyMenu {
         account.setTotalSum(account.getTotalSum() + sumToAdd);
         boolean flag = AccountService.updateAmountOnAccount(account);
         if (flag) {
-            LOGGER.info("Money were successfully add to account");
+            LOGGER.info("Money were successfully added to account");
+            atm.getBills().forEach(BillService::updateBill);
         }
         else {
-            LOGGER.info("Money were not add, try again");
+            LOGGER.info("Money were not added, try again");
+            atm.setBills((ArrayList<Bill>) BillService.getBillsByATMId(atm.getId()));
+        }
+    }
+
+    private enum CurrencyInfo {
+        BYN("BYN", new int[]{5, 10, 20, 50, 100, 200, 500}),
+        RUB("RUB", new int[]{10, 50, 100, 200, 500, 1000, 2000}),
+        EUR("EUR", new int[]{5, 10, 20, 50, 100, 200, 500}),
+        USD("USD", new int[]{1, 2, 5, 10, 20, 50, 100}),
+        GBP("GBP", new int[]{5, 10, 20, 50});
+        public final String currencyString;
+        public final int[] possibleValues;
+
+        CurrencyInfo(String currencyString, int[] possibleValues) {
+            this.currencyString = currencyString;
+            this.possibleValues = possibleValues;
         }
     }
 }
