@@ -1,9 +1,12 @@
 package com.solvd.atm.atm_menu.working_with_card;
 
+import com.solvd.atm.dao.mysql.ATMDao;
+import com.solvd.atm.dao.mysql.BillDAO;
 import com.solvd.atm.models.ATM;
 import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Bill;
 import com.solvd.atm.services.AccountService;
+import com.solvd.atm.services.BillService;
 import com.solvd.atm.utils.MyLogger;
 
 import java.util.*;
@@ -15,8 +18,13 @@ public class WithdrawMenu {
 
     public static void withdrawMoneyFromAccount(Account account, ATM atm) {
         //TODO: add static method for int input. Check if int and if in range, repeat if not
+
         LOGGER.info("Enter the sum to withdraw");
         int sum = SCANNER.nextInt();
+        if (account.getTotalSum() < sum) {
+            LOGGER.info("Not enough money on account");
+            return;
+        }
         ArrayList<ArrayList<Bill>> withdrawalChoices = withdrawMoney(account, atm, sum);
         if (withdrawalChoices.isEmpty()) {
             LOGGER.info("Can't withdraw this sum");
@@ -27,7 +35,7 @@ public class WithdrawMenu {
         int i = 0;
         for (ArrayList<Bill> c:
              withdrawalChoices) {
-            LOGGER.info("Choice " + i++);
+            LOGGER.info("Choice " + ++i);
             c.forEach(b -> LOGGER.info(b.getCount() +
                     " bill" + ((b.getCount() == 1) ? "" : "s") +
                     " valued " + b.getRating() + " " + b.getCurrency()));
@@ -50,10 +58,14 @@ public class WithdrawMenu {
         account.setTotalSum(account.getTotalSum() - sum);
         boolean flag = AccountService.updateAmountOnAccount(account);
         if (flag) {
-            LOGGER.info("Money were successfully withdraw from account");
+            for (Bill bill: atm.getBills()) {
+                BillService.updateBill(bill);
+            }
+            //atm.getBills().forEach(b -> BillService.updateBill(b.getIdBill(), b.getCount()));
+            LOGGER.info("Money were successfully withdrawn from account");
         }
         else {
-            LOGGER.info("Money were not withdraw, try again");
+            LOGGER.info("Money were not withdrawn, try again");
         }
     }
 

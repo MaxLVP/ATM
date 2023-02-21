@@ -28,7 +28,7 @@ public class CurrencyParser {
                 currency.setCourse(RUB_CURRENCY_VALUE);
                 boolean flag = CurrencyService.updateCurrency(currency);
                 if (flag) {
-                    LOGGER.info("Currency " + currency.getName() + " was update ");
+                    LOGGER.info("Currency " + currency.getName() + " was updated ");
                 } else {
                     LOGGER.info("Failed to update currency " + currency.getName());
                 }
@@ -37,7 +37,7 @@ public class CurrencyParser {
                 boolean flag = CurrencyService.updateCurrency(currency);
 
                 if (flag) {
-                    LOGGER.info("Currency " + currency.getName() + " was update ");
+                    LOGGER.info("Currency " + currency.getName() + " was updated ");
                 } else {
                     LOGGER.info("Failed to update currency " + currency.getName());
                 }

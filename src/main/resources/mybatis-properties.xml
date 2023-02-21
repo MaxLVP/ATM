@@ -10,10 +10,10 @@
                 <property name="defaultReadOnly" value="false"/>
             </transactionManager>
             <dataSource type="POOLED">
-                <property name="driver" value="${driver}"/>
-                <property name="url" value="${url}"/>
-                <property name="username" value="${user}"/>
-                <property name="password" value="${password}"/>
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mydb"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
             </dataSource>
         </environment>
     </environments>
@@ -24,5 +24,6 @@
         <mapper class="com.solvd.atm.dao.ICurrencyDAO"/>
         <mapper class="com.solvd.atm.dao.IUserDAO"/>
         <mapper class="com.solvd.atm.dao.IFineDAO"/>
+        <mapper class="com.solvd.atm.dao.IATMDao"/>
     </mappers>
 </configuration>

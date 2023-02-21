@@ -15,7 +15,7 @@ public class CurrencyDAO implements ICurrencyDAO {
 
     @Override
     public Currency getEntityById(long id) {
-        return null;
+        return iCurrencyDAO.getEntityById(id);
     }
 
     @Override

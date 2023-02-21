@@ -9,6 +9,8 @@ public class Bill {
 
     private String currency;
 
+    private long idCurr;
+    private long idATM;
     public int getRating() {
         return rating;
     }
@@ -73,5 +75,33 @@ public class Bill {
                 ", count=" + count +
                 ", currency=" + currency +
                 '}';
+    }
+
+    public long getIdBill() {
+        return idBill;
+    }
+
+    public void setIdBill(long idBill) {
+        this.idBill = idBill;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public long getIdCurr() {
+        return idCurr;
+    }
+
+    public void setIdCurr(long idCurr) {
+        this.idCurr = idCurr;
+    }
+
+    public long getIdATM() {
+        return idATM;
+    }
+
+    public void setIdATM(long idATM) {
+        this.idATM = idATM;
     }
 }
