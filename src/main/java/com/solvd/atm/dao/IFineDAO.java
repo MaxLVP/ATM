@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 public interface IFineDAO extends IBaseDAO<Fine> {
     @Select("SELECT * FROM fines WHERE id_fine = #{id_fine}")
     @Results(value = {
-            @Result(property = "idFine", column = "id_fine"),
+            @Result(property = "idFine", column = "id_Fines"),
             @Result(property = "nameFine", column = "name_fine"),
             @Result(property = "fineAmount", column = "fine_amount"),
             @Result(property = "nameCurrency", column = "name_currency")
