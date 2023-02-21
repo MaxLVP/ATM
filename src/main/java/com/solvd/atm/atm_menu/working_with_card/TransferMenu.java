@@ -74,17 +74,18 @@ public class TransferMenu {
         if (money > start.getTotalSum()) {
             LOGGER.info("You don't have enough money to pay, try less sum");
             transferMoney(start, end);
-        }
-        start.setTotalSum(start.getTotalSum() - money);
-        boolean start_update = AccountService.updateAmountOnAccount(start);
-        double endMoney = Exchange.getExchangeAmount(start.getCurrency(), end.getCurrency(), money);
-        end.setTotalSum(end.getTotalSum() + endMoney);
-        boolean end_update = AccountService.updateAmountOnAccount(end);
-        if (start_update && end_update) {
-            LOGGER.info("Money were successfully transferred");
-            getCheckOfOperation(start, money);
         } else {
-            LOGGER.info("Money are not transferred, try again later");
+            start.setTotalSum(start.getTotalSum() - money);
+            boolean start_update = AccountService.updateAmountOnAccount(start);
+            double endMoney = Exchange.getExchangeAmount(start.getCurrency(), end.getCurrency(), money);
+            end.setTotalSum(end.getTotalSum() + endMoney);
+            boolean end_update = AccountService.updateAmountOnAccount(end);
+            if (start_update && end_update) {
+                LOGGER.info("Money were successfully transferred");
+                getCheckOfOperation(start, money);
+            } else {
+                LOGGER.info("Money are not transferred, try again later");
+            }
         }
     }
 
