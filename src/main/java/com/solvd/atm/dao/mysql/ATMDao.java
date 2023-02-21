@@ -12,6 +12,7 @@ public class ATMDao implements IATMDao {
     private static final SqlSessionFactory SESSION_FACTORY = MyBatisDAO.getSqlSessionFactory();
     private final SqlSession sqlSession = SESSION_FACTORY.openSession();
     private final IATMDao iatmDao = sqlSession.getMapper(IATMDao.class);
+
     @Override
     public ATM getEntityById(long idATM) {
         return iatmDao.getEntityById(idATM);

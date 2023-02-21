@@ -4,9 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import javax.xml.bind.annotation.*;
+
 @XmlRootElement(name = "userModel")
 @XmlAccessorType(XmlAccessType.FIELD)
-@JsonRootName(value="userModel")
+@JsonRootName(value = "userModel")
 public class User {
     @XmlAttribute
     @JsonProperty("idUser")

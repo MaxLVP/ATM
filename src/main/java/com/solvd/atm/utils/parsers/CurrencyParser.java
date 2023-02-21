@@ -23,7 +23,7 @@ public class CurrencyParser {
         Response response = RestAssured.given().request(Method.GET);
         JsonPath jsonPath = response.jsonPath();
         List<Currency> currencies = CurrencyService.getListOfCurrency();
-        for (Currency currency: currencies) {
+        for (Currency currency : currencies) {
             if (currency.getName().equals(RUB_CURRENCY_NAME)) {
                 currency.setCourse(RUB_CURRENCY_VALUE);
                 boolean flag = CurrencyService.updateCurrency(currency);

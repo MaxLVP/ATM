@@ -9,10 +9,9 @@ import com.solvd.atm.services.BillService;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.utils.exchange.Exchange;
 
-import javax.lang.model.element.Element;
-import java.lang.reflect.Array;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class AddingMoneyMenu {
@@ -24,7 +23,7 @@ public class AddingMoneyMenu {
         String currency = SCANNER.next();
         boolean canContinue = false;
         CurrencyInfo currencyInfo = null;
-        for (CurrencyInfo element: CurrencyInfo.values()) {
+        for (CurrencyInfo element : CurrencyInfo.values()) {
             if (element.currencyString.equals(currency)) {
                 canContinue = true;
                 currencyInfo = element;
@@ -40,8 +39,7 @@ public class AddingMoneyMenu {
             LOGGER.info("Enter bill rating or 0 to stop");
             try {
                 billRating = SCANNER.nextInt();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 continue;
             }
             if (billRating == 0) {
@@ -73,8 +71,7 @@ public class AddingMoneyMenu {
         if (flag) {
             LOGGER.info("Money were successfully added to account");
             atm.getBills().forEach(BillService::updateBill);
-        }
-        else {
+        } else {
             LOGGER.info("Money were not added, try again");
             atm.setBills((ArrayList<Bill>) BillService.getBillsByATMId(atm.getId()));
         }

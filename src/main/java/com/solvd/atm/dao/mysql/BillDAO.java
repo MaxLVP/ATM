@@ -1,6 +1,5 @@
 package com.solvd.atm.dao.mysql;
 
-import com.solvd.atm.dao.IAccountDAO;
 import com.solvd.atm.dao.IBillDAO;
 import com.solvd.atm.dao.utils.MyBatisDAO;
 import com.solvd.atm.models.Bill;
@@ -13,6 +12,7 @@ public class BillDAO implements IBillDAO {
     private static final SqlSessionFactory SESSION_FACTORY = MyBatisDAO.getSqlSessionFactory();
     private final SqlSession sqlSession = SESSION_FACTORY.openSession();
     private final IBillDAO iBillDAO = sqlSession.getMapper(IBillDAO.class);
+
     @Override
     public Bill getEntityById(long id) {
         return iBillDAO.getEntityById(id);

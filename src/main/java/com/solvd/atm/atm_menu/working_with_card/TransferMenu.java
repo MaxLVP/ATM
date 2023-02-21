@@ -35,11 +35,11 @@ public class TransferMenu {
         LOGGER.info("Choose id of the account, where you want to transfer money");
         List<Account> userAccountList = AccountService.getAllAccountsByUser(accountFromTransfer.getOwner());
         LOGGER.info("Your accounts, please choose one");
-        for (Account userAccount: userAccountList) {
+        for (Account userAccount : userAccountList) {
             LOGGER.info(userAccount);
         }
         int idAccount = SCANNER.nextInt();
-        Optional<Account> accountOptional = userAccountList.stream().filter( acc -> acc.getIdAccount() == idAccount).findFirst();
+        Optional<Account> accountOptional = userAccountList.stream().filter(acc -> acc.getIdAccount() == idAccount).findFirst();
         if (accountOptional.isPresent()) {
             Account accountToTransfer = accountOptional.get();
             LOGGER.info("The chosen account is " + accountToTransfer);
@@ -53,11 +53,11 @@ public class TransferMenu {
     public static void transferToAnyAccount(Account accountFromTransfer) {
         LOGGER.info("Choose id of the account, where you want to transfer money");
         List<Account> accountList = AccountService.getAllAccounts();
-        for (Account account: accountList) {
+        for (Account account : accountList) {
             LOGGER.info(account);
         }
         int idAccount = SCANNER.nextInt();
-        Optional<Account> accountOptional = accountList.stream().filter( acc -> acc.getIdAccount() == idAccount).findFirst();
+        Optional<Account> accountOptional = accountList.stream().filter(acc -> acc.getIdAccount() == idAccount).findFirst();
         if (accountOptional.isPresent()) {
             Account accountToTransfer = accountOptional.get();
             LOGGER.info("The chosen account is " + accountToTransfer);

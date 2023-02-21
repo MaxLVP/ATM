@@ -11,6 +11,7 @@ public class Bill {
 
     private long idCurr;
     private long idATM;
+
     public int getRating() {
         return rating;
     }
@@ -41,9 +42,11 @@ public class Bill {
         count += delta;
         return count;
     }
+
     public String getCurrency() {
         return currency;
     }
+
     public Bill(int rating, int count, String currency) {
         this.rating = rating;
         this.count = count;

@@ -1,7 +1,5 @@
 package com.solvd.atm.atm_menu.working_with_card;
 
-import com.solvd.atm.dao.mysql.ATMDao;
-import com.solvd.atm.dao.mysql.BillDAO;
 import com.solvd.atm.models.ATM;
 import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Bill;
@@ -11,7 +9,10 @@ import com.solvd.atm.services.BillService;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.utils.exchange.Exchange;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 public class WithdrawMenu {
     private static final int TOTAL_COMBINATIONS = 3;
@@ -24,7 +25,7 @@ public class WithdrawMenu {
         String currency = SCANNER.next();
         boolean canContinue = false;
         CurrencyInfo currencyInfo = null;
-        for (CurrencyInfo element: CurrencyInfo.values()) {
+        for (CurrencyInfo element : CurrencyInfo.values()) {
             if (element.currencyString.equals(currency)) {
                 canContinue = true;
                 currencyInfo = element;
@@ -48,8 +49,8 @@ public class WithdrawMenu {
         LOGGER.info("Choose withdrawn combination");
         //printing all choices
         int i = 0;
-        for (ArrayList<Bill> c:
-             withdrawalChoices) {
+        for (ArrayList<Bill> c :
+                withdrawalChoices) {
             LOGGER.info("Choice " + ++i);
             c.forEach(b -> LOGGER.info(b.getCount() +
                     " bill" + ((b.getCount() == 1) ? "" : "s") +
@@ -59,13 +60,13 @@ public class WithdrawMenu {
         withdrawalChoices.get(choice - 1).forEach(b -> {
             //printing info
             LOGGER.info("Given " + b.getCount() +
-            " bill" + ((b.getCount() == 1) ? "" : "s") +
-            " valued " + b.getRating() + " " + b.getCurrency());
+                    " bill" + ((b.getCount() == 1) ? "" : "s") +
+                    " valued " + b.getRating() + " " + b.getCurrency());
             //withdrawing from atm
             atm.getBills().stream()
                     .filter(atmBill ->
-                    atmBill.getCurrency().equals(b.getCurrency()) &&
-                    atmBill.getRating() == b.getRating())
+                            atmBill.getCurrency().equals(b.getCurrency()) &&
+                                    atmBill.getRating() == b.getRating())
                     .findFirst()
                     .get().decCount(b.getCount());
         });
@@ -75,8 +76,7 @@ public class WithdrawMenu {
         if (flag) {
             LOGGER.info("Money were successfully withdrawn from account");
             atm.getBills().forEach(BillService::updateBill);
-        }
-        else {
+        } else {
             LOGGER.info("Money were not withdrawn, try again");
             atm.setBills((ArrayList<Bill>) BillService.getBillsByATMId(atm.getId()));
         }

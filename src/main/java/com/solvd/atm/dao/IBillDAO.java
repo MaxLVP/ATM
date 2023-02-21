@@ -1,10 +1,8 @@
 package com.solvd.atm.dao;
 
-import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Bill;
 import org.apache.ibatis.annotations.*;
 
-import java.util.Date;
 import java.util.List;
 
 public interface IBillDAO extends IBaseDAO<Bill> {
@@ -17,6 +15,7 @@ public interface IBillDAO extends IBaseDAO<Bill> {
             @Result(property = "count", column = "b.banknote_count")
     })
     Bill getEntityById(@Param("id_banknote") long id_banknote);
+
     @Update("UPDATE banknote SET banknote_count = #{banknote_count} WHERE id_banknote = #{id_banknote}")
     boolean updateEntity(@Param("id_banknote") long id_banknote, @Param("banknote_count") int banknote_count);
 //    @Insert("INSERT INTO banknote (id_banknote, name_banknote, currency_id_currency, banknote_count) VALUES " +

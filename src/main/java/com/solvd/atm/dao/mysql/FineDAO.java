@@ -1,6 +1,5 @@
 package com.solvd.atm.dao.mysql;
 
-import com.solvd.atm.dao.ICurrencyDAO;
 import com.solvd.atm.dao.IFineDAO;
 import com.solvd.atm.dao.utils.MyBatisDAO;
 import com.solvd.atm.models.Fine;

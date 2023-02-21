@@ -11,7 +11,7 @@ import java.util.List;
 
 @XmlRootElement(name = "checks")
 @XmlAccessorType(XmlAccessType.FIELD)
-@JsonRootName(value="checks")
+@JsonRootName(value = "checks")
 public class ChecksList {
     @XmlElement(name = "check")
     @JsonProperty("check")

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import javax.xml.bind.annotation.*;
+
 @XmlRootElement(name = "modelCheck")
 @XmlAccessorType(XmlAccessType.FIELD)
 @JsonRootName(value = "modelCheck")
@@ -24,7 +25,7 @@ public class Check {
     @JsonProperty("amount")
     private double amount;
 
-    public Check () {
+    public Check() {
 
     }
 

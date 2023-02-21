@@ -6,7 +6,8 @@ public class Fine {
     private double fineAmount;
     private String nameCurrency;
 
-    public Fine () {}
+    public Fine() {
+    }
 
     public double getFineAmount() {
         return fineAmount;

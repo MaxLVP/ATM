@@ -1,8 +1,6 @@
 package com.solvd.atm.models;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.ArrayList;
 
 public class ATM {
     //use stream and filter by currencies
@@ -11,8 +9,7 @@ public class ATM {
     private ArrayList<Bill> bills;
     private Card card;
 
-    public ATM(long id)
-    {
+    public ATM(long id) {
         this.id = id;
     }
 

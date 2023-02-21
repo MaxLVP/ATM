@@ -1,7 +1,6 @@
 package com.solvd.atm.dao;
 
 import com.solvd.atm.models.ATM;
-import com.solvd.atm.models.Bill;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

@@ -17,7 +17,7 @@ public class AccountService {
 
     public static List<Account> getAllAccounts() {
         List<Account> accountList = ACCOUNT_DAO.getAllAccounts();
-        for (Account account: accountList) {
+        for (Account account : accountList) {
             account.setOwner(USER_DAO.getEntityByAccountId(account.getIdAccount()));
         }
         return ACCOUNT_DAO.getAllAccounts();
@@ -35,7 +35,7 @@ public class AccountService {
 
     public static List<Account> getAllAccountsByUser(User user) {
         List<Account> accountList = ACCOUNT_DAO.getAllAccountsByUserId(user.getIdUser());
-        for (Account account: accountList) {
+        for (Account account : accountList) {
             account.setOwner(USER_DAO.getEntityByAccountId(account.getIdAccount()));
         }
         return ACCOUNT_DAO.getAllAccountsByUserId(user.getIdUser());

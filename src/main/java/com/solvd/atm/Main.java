@@ -14,6 +14,6 @@ public class Main {
         boolean exit = false;
         while (!exit) {
             exit = mainMenu(false);
-       }
+        }
     }
 }

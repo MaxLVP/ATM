@@ -1,7 +1,5 @@
 package com.solvd.atm.utils;
 
-import com.solvd.atm.utils.MyLogger;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;

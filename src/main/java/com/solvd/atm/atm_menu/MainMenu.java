@@ -2,9 +2,9 @@ package com.solvd.atm.atm_menu;
 
 import com.solvd.atm.models.ATM;
 import com.solvd.atm.models.Account;
+import com.solvd.atm.models.Card;
 import com.solvd.atm.services.CardService;
 import com.solvd.atm.utils.MyLogger;
-import com.solvd.atm.models.Card;
 import com.solvd.atm.utils.collections.BlockedCardCollection;
 import com.solvd.atm.utils.threads.WorkingWithPool;
 
@@ -42,15 +42,14 @@ public class MainMenu {
         if (CURRENT_ATM.getCard() == null) {
             Card card = validateCard();
             Account account = WorkingWithPool.getAccountFromPool(card);
-            if(account == null) {
+            if (account == null) {
                 LOGGER.info("Firstly get back another card from ATM");
                 mainMenu(false);
             } else {
                 CURRENT_ATM.setCard(card);
                 mainCardMenu(card, CURRENT_ATM);
             }
-        }
-        else {
+        } else {
             LOGGER.info("You already have card in this ATM, going to card menu");
             mainCardMenu(CURRENT_ATM.getCard(), CURRENT_ATM);
         }
@@ -71,7 +70,7 @@ public class MainMenu {
     }
 
     public static void switchATM() {
-        if(CURRENT_ATM.getId() == 1) {
+        if (CURRENT_ATM.getId() == 1) {
             LOGGER.info("Switching to ATM 2");
             CURRENT_ATM = ATM_2;
             mainMenu(false);

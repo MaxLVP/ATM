@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-public  class JsonParser {
+public class JsonParser {
 
     protected final static Logger LOGGER = LogManager.getLogger(JsonParser.class);
     private static final File JSON_FILE = new File("src/main/resources/checks/cheks.json");
@@ -21,7 +21,7 @@ public  class JsonParser {
         ObjectMapper mapper = new ObjectMapper();
         try {
             mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(JSON_FILE,checksList);
+            mapper.writeValue(JSON_FILE, checksList);
         } catch (Exception e) {
             LOGGER.info(e.getMessage());
         }

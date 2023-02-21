@@ -30,6 +30,8 @@ public class MyLogger {
         LOGGER.warn(msg);
     }
 
-    public void error(String msg) {LOGGER.error(msg);}
+    public void error(String msg) {
+        LOGGER.error(msg);
+    }
 
 }

@@ -8,13 +8,13 @@ import com.solvd.atm.services.FineService;
 import com.solvd.atm.utils.MyLogger;
 import com.solvd.atm.utils.collections.AllChecksCollection;
 import com.solvd.atm.utils.exchange.Exchange;
-import com.solvd.atm.utils.parsers.JsonParser;
 
 import java.util.Scanner;
 
 public class BillsMenu {
     private static final MyLogger LOGGER = MyLogger.getInstance();
     private static final Scanner SCANNER = new Scanner(System.in);
+
     public static void payBills(Account account) {
         LOGGER.info("Select the section for bill payment");
         LOGGER.info("1. Top up phone balance");

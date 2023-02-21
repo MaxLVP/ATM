@@ -11,6 +11,7 @@ public class BlockedCardCollection {
     public static List<Card> getAllBlockedCard() {
         return CARD_LIST;
     }
+
     public static void addToBlockedCard(Card card) {
         CARD_LIST.add(card);
     }
