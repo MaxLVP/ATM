@@ -5,9 +5,11 @@ import com.solvd.atm.dao.mysql.BillDAO;
 import com.solvd.atm.models.ATM;
 import com.solvd.atm.models.Account;
 import com.solvd.atm.models.Bill;
+import com.solvd.atm.models.CurrencyInfo;
 import com.solvd.atm.services.AccountService;
 import com.solvd.atm.services.BillService;
 import com.solvd.atm.utils.MyLogger;
+import com.solvd.atm.utils.exchange.Exchange;
 
 import java.util.*;
 
@@ -18,14 +20,27 @@ public class WithdrawMenu {
 
     public static void withdrawMoneyFromAccount(Account account, ATM atm) {
         //TODO: add static method for int input. Check if int and if in range, repeat if not
-
+        LOGGER.info("Enter currency");
+        String currency = SCANNER.next();
+        boolean canContinue = false;
+        CurrencyInfo currencyInfo = null;
+        for (CurrencyInfo element: CurrencyInfo.values()) {
+            if (element.currencyString.equals(currency)) {
+                canContinue = true;
+                currencyInfo = element;
+            }
+        }
+        if (!canContinue) {
+            LOGGER.info("Wrong currency");
+            return;
+        }
         LOGGER.info("Enter the sum to withdraw");
         int sum = SCANNER.nextInt();
-        if (account.getTotalSum() < sum) {
+        if (Exchange.getExchangeAmount(account.getCurrency(), currency, account.getTotalSum()) < sum) {
             LOGGER.info("Not enough money on account");
             return;
         }
-        ArrayList<ArrayList<Bill>> withdrawalChoices = withdrawMoney(account, atm, sum);
+        ArrayList<ArrayList<Bill>> withdrawalChoices = withdrawMoney(atm, sum, currency);
         if (withdrawalChoices.isEmpty()) {
             LOGGER.info("Can't withdraw this sum");
             return;
@@ -55,7 +70,7 @@ public class WithdrawMenu {
                     .get().decCount(b.getCount());
         });
 
-        account.setTotalSum(account.getTotalSum() - sum);
+        account.setTotalSum(account.getTotalSum() - Exchange.getExchangeAmount(currency, account.getCurrency(), sum));
         boolean flag = AccountService.updateAmountOnAccount(account);
         if (flag) {
             LOGGER.info("Money were successfully withdrawn from account");
@@ -67,11 +82,11 @@ public class WithdrawMenu {
         }
     }
 
-    private static ArrayList<ArrayList<Bill>> withdrawMoney(Account account, ATM atm, int sum) {
+    private static ArrayList<ArrayList<Bill>> withdrawMoney(ATM atm, int sum, String currency) {
         List<Bill> usedBills = new ArrayList<>(atm.getBills().stream()
                 .filter(b ->
                         (b.getCurrency())
-                                .equals(account.getCurrency()))
+                                .equals(currency))
                 .sorted(Bill.COMPARE_BY_RATING.reversed())
                 .toList());  //filter bills of account's currency
         ArrayList<ArrayList<Bill>> possibleCombinations = new ArrayList<>();
