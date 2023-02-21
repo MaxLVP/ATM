@@ -58,14 +58,12 @@ public class WithdrawMenu {
         account.setTotalSum(account.getTotalSum() - sum);
         boolean flag = AccountService.updateAmountOnAccount(account);
         if (flag) {
-            for (Bill bill: atm.getBills()) {
-                BillService.updateBill(bill);
-            }
-            //atm.getBills().forEach(b -> BillService.updateBill(b.getIdBill(), b.getCount()));
             LOGGER.info("Money were successfully withdrawn from account");
+            atm.getBills().forEach(BillService::updateBill);
         }
         else {
             LOGGER.info("Money were not withdrawn, try again");
+            atm.setBills((ArrayList<Bill>) BillService.getBillsByATMId(atm.getId()));
         }
     }
 

@@ -19,7 +19,6 @@ public interface IBillDAO extends IBaseDAO<Bill> {
     Bill getEntityById(@Param("id_banknote") long id_banknote);
     @Update("UPDATE banknote SET banknote_count = #{banknote_count} WHERE id_banknote = #{id_banknote}")
     boolean updateEntity(@Param("id_banknote") long id_banknote, @Param("banknote_count") int banknote_count);
-
 //    @Insert("INSERT INTO banknote (id_banknote, name_banknote, currency_id_currency, banknote_count) VALUES " +
 //            "(#{id_banknote}, #{name_banknote}, #{currency_id_currency}, #{banknote_count})")
 //    Account createEntity(@Param("id_banknote") long id_banknote, @Param("name_banknote") String name_banknote,
